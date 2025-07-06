@@ -4,9 +4,29 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Calendar, User, ArrowRight, Clock } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
+interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  content: string;
+  date: string;
+  author: string;
+  image: string;
+  category: string;
+  tags: string[];
+  readTime: string;
+}
+
+interface BlogData {
+  title: string;
+  subtitle: string;
+  readMore: string;
+  posts: BlogPost[];
+}
+
 export default function Blog() {
   const { language } = useLanguage();
-  const [blogData, setBlogData] = useState(null);
+  const [blogData, setBlogData] = useState<BlogData | null>(null);
 
   useEffect(() => {
     const loadBlogData = async () => {

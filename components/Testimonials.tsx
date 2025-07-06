@@ -4,9 +4,34 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
+// Define the type for testimonial data
+interface Testimonial {
+  id: number;
+  name: string;
+  location: string;
+  service: string;
+  testimonial: string;
+  rating: number;
+  date: string;
+  image: string;
+}
+
+interface Stat {
+  number: string;
+  label: string;
+}
+
+interface TestimonialsData {
+  title: string;
+  subtitle: string;
+  consultedOn: string;
+  testimonials: Testimonial[];
+  stats: Stat[];
+}
+
 export default function Testimonials() {
   const { language } = useLanguage();
-  const [testimonialsData, setTestimonialsData] = useState(null);
+  const [testimonialsData, setTestimonialsData] = useState<TestimonialsData | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -177,7 +202,7 @@ export default function Testimonials() {
 
           {/* Dots Indicator */}
           <div className="flex justify-center space-x-3 mb-12">
-            {testimonialsData.testimonials.map((_, index) => (
+            {testimonialsData.testimonials.map((_: Testimonial, index: number) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
@@ -192,7 +217,7 @@ export default function Testimonials() {
 
           {/* Thumbnail Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {testimonialsData.testimonials.map((testimonial, index) => (
+            {testimonialsData.testimonials.map((testimonial: Testimonial, index: number) => (
               <button
                 key={index}
                 onClick={() => goToSlide(index)}
@@ -238,7 +263,7 @@ export default function Testimonials() {
 
         {/* Stats Section */}
         <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-          {testimonialsData.stats.map((stat, index) => (
+          {testimonialsData.stats.map((stat: Stat, index: number) => (
             <div key={index} className="text-center">
               <div className="text-4xl font-bold text-primary-red mb-2">
                 {stat.number}

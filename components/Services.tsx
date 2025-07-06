@@ -13,9 +13,24 @@ const iconMap = {
   Briefcase
 };
 
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+  gradient: string;
+  features: string[];
+}
+
+interface ServicesData {
+  title: string;
+  subtitle: string;
+  services: Service[];
+}
+
 export default function Services() {
   const { language } = useLanguage();
-  const [servicesData, setServicesData] = useState(null);
+  const [servicesData, setServicesData] = useState<ServicesData | null>(null);
 
   useEffect(() => {
     const loadServicesData = async () => {
@@ -60,8 +75,8 @@ export default function Services() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {servicesData.services.map((service) => {
-            const Icon = iconMap[service.icon];
+          {servicesData.services.map((service: Service) => {
+            const Icon = iconMap[service.icon as keyof typeof iconMap];
             return (
               <div
                 key={service.id}
@@ -80,7 +95,7 @@ export default function Services() {
                 </p>
 
                 <div className="space-y-2">
-                  {service.features.map((feature, index) => (
+                  {service.features.map((feature: string, index: number) => (
                     <div key={index} className="flex items-center space-x-2 text-sm text-gray-700">
                       <div className="w-1.5 h-1.5 bg-primary-red rounded-full"></div>
                       <span>{feature}</span>
