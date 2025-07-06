@@ -6,9 +6,29 @@ import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  content: string;
+  date: string;
+  author: string;
+  image: string;
+  category: string;
+  tags: string[];
+  readTime: string;
+}
+
+interface BlogData {
+  title: string;
+  subtitle: string;
+  readMore: string;
+  posts: BlogPost[];
+}
+
 export default function BlogPage() {
   const { language } = useLanguage();
-  const [blogData, setBlogData] = useState(null);
+  const [blogData, setBlogData] = useState<BlogData | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
 
@@ -46,7 +66,7 @@ export default function BlogPage() {
     );
   }
 
-  const categories = ['all', ...new Set(blogData.posts.map(post => post.category))];
+  const categories = ['all', ...Array.from(new Set(blogData.posts.map(post => post.category)))];
   
   const filteredPosts = blogData.posts.filter(post => {
     const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
