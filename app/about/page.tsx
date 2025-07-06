@@ -5,17 +5,25 @@ import { Award, BookOpen, Users, Star, CheckCircle, Calendar, Trophy, Heart } fr
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+// Define the TranslationKey type to match the one in LanguageContext
+type TranslationKey = 
+  | 'nav.home' | 'nav.services' | 'nav.blog' | 'nav.about' | 'nav.contact' | 'nav.consultNow'
+  | 'hero.title' | 'hero.subtitle' | 'hero.cta' | 'hero.experience' | 'hero.clients' | 'hero.accuracy'
+  | 'about.title' | 'about.subtitle' | 'about.desc' | 'about.specializations' | 'about.spec1' | 'about.spec2' | 'about.spec3' | 'about.spec4'
+  | 'about.achievements' | 'about.achievement1' | 'about.achievement2' | 'about.achievement3'
+  | 'footer.tagline' | 'footer.quickLinks' | 'footer.services' | 'footer.contact' | 'footer.email' | 'footer.phone' | 'footer.address' | 'footer.followUs' | 'footer.rights' | 'footer.location';
+
 export default function AboutPage() {
   const { t, language } = useLanguage();
 
-  const specializations = [
+  const specializations: { key: TranslationKey; icon: any }[] = [
     { key: 'about.spec1', icon: Star },
     { key: 'about.spec2', icon: Users },
     { key: 'about.spec3', icon: BookOpen },
     { key: 'about.spec4', icon: Award }
   ];
 
-  const achievements = [
+  const achievements: TranslationKey[] = [
     'about.achievement1',
     'about.achievement2',
     'about.achievement3'
