@@ -4,10 +4,18 @@ import { createContext, useContext, useState, useEffect, ReactNode } from 'react
 
 type Language = 'en' | 'hi';
 
+// Define all possible translation keys
+type TranslationKey = 
+  | 'nav.home' | 'nav.services' | 'nav.blog' | 'nav.about' | 'nav.contact' | 'nav.consultNow'
+  | 'hero.title' | 'hero.subtitle' | 'hero.cta' | 'hero.experience' | 'hero.clients' | 'hero.accuracy'
+  | 'about.title' | 'about.subtitle' | 'about.desc' | 'about.specializations' | 'about.spec1' | 'about.spec2' | 'about.spec3' | 'about.spec4'
+  | 'about.achievements' | 'about.achievement1' | 'about.achievement2' | 'about.achievement3'
+  | 'footer.tagline' | 'footer.quickLinks' | 'footer.services' | 'footer.contact' | 'footer.email' | 'footer.phone' | 'footer.address' | 'footer.followUs' | 'footer.rights' | 'footer.location';
+
 interface LanguageContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
-  t: (key: string) => string;
+  t: (key: TranslationKey) => string;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
@@ -20,7 +28,7 @@ export const useLanguage = () => {
   return context;
 };
 
-const translations = {
+const translations: Record<Language, Record<TranslationKey, string>> = {
   en: {
     // Header
     'nav.home': 'Home',
@@ -126,7 +134,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem('preferred-language', lang);
   };
 
-  const t = (key: string): string => {
+  const t = (key: TranslationKey): string => {
     return translations[language][key] || key;
   };
 
