@@ -5,11 +5,19 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { Menu, X, Star } from 'lucide-react';
 import Link from 'next/link';
 
+// Define the TranslationKey type to match the one in LanguageContext
+type TranslationKey = 
+  | 'nav.home' | 'nav.services' | 'nav.blog' | 'nav.about' | 'nav.contact' | 'nav.consultNow'
+  | 'hero.title' | 'hero.subtitle' | 'hero.cta' | 'hero.experience' | 'hero.clients' | 'hero.accuracy'
+  | 'about.title' | 'about.subtitle' | 'about.desc' | 'about.specializations' | 'about.spec1' | 'about.spec2' | 'about.spec3' | 'about.spec4'
+  | 'about.achievements' | 'about.achievement1' | 'about.achievement2' | 'about.achievement3'
+  | 'footer.tagline' | 'footer.quickLinks' | 'footer.services' | 'footer.contact' | 'footer.email' | 'footer.phone' | 'footer.address' | 'footer.followUs' | 'footer.rights' | 'footer.location';
+
 export default function Header() {
   const { language, setLanguage, t } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const navItems = [
+  const navItems: { key: TranslationKey; href: string }[] = [
     { key: 'nav.home', href: '/' },
     { key: 'nav.services', href: '/services' },
     { key: 'nav.blog', href: '/blog' },

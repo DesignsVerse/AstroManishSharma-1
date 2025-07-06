@@ -3,6 +3,13 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Mail, Phone, MapPin, Facebook, Instagram, Youtube, Twitter, Star } from 'lucide-react';
 
+// Define the TranslationKey type to match the one in LanguageContext
+type TranslationKey = 
+  | 'nav.home' | 'nav.services' | 'nav.blog' | 'nav.about' | 'nav.contact' | 'nav.consultNow'
+  | 'hero.title' | 'hero.subtitle' | 'hero.cta' | 'hero.experience' | 'hero.clients' | 'hero.accuracy'
+  | 'about.achievements' | 'about.achievement1' | 'about.achievement2' | 'about.achievement3'
+  | 'footer.tagline' | 'footer.quickLinks' | 'footer.services' | 'footer.contact' | 'footer.email' | 'footer.phone' | 'footer.address' | 'footer.followUs' | 'footer.rights' | 'footer.location';
+
 export default function Footer() {
   const { t, language } = useLanguage();
 
@@ -13,7 +20,7 @@ export default function Footer() {
     { icon: Twitter, href: '#', label: 'Twitter' }
   ];
 
-  const quickLinks = [
+  const quickLinks: { key: TranslationKey; href: string }[] = [
     { key: 'nav.home', href: '#home' },
     { key: 'nav.services', href: '#services' },
     { key: 'nav.blog', href: '#blog' },

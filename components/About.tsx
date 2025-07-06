@@ -6,14 +6,14 @@ import { Award, BookOpen, Users, Star } from 'lucide-react';
 export default function About() {
   const { t } = useLanguage();
 
-  const specializations = [
+  const specializations: { key: 'about.spec1' | 'about.spec2' | 'about.spec3' | 'about.spec4'; icon: any }[] = [
     { key: 'about.spec1', icon: Star },
     { key: 'about.spec2', icon: Users },
     { key: 'about.spec3', icon: BookOpen },
     { key: 'about.spec4', icon: Award }
   ];
 
-  const achievements = [
+  const achievements: ('about.achievement1' | 'about.achievement2' | 'about.achievement3')[] = [
     'about.achievement1',
     'about.achievement2',
     'about.achievement3'
