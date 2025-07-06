@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-const iconMap = {
+const iconMap: Record<string, React.ComponentType<any>> = {
   Star,
   Heart,
   Calculator,
@@ -15,9 +15,25 @@ const iconMap = {
   Briefcase
 };
 
+// Define the type for services data
+interface Service {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+  gradient: string;
+  features: string[];
+}
+
+interface ServicesData {
+  title: string;
+  subtitle: string;
+  services: Service[];
+}
+
 export default function ServicesPage() {
   const { language, t } = useLanguage();
-  const [servicesData, setServicesData] = useState(null);
+  const [servicesData, setServicesData] = useState<ServicesData | null>(null);
 
   useEffect(() => {
     const loadServicesData = async () => {
