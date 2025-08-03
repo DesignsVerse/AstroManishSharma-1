@@ -11,7 +11,7 @@ export const fadeIn = (direction: 'up' | 'down' | 'left' | 'right', type: string
     y: 0,
     opacity: 1,
     transition: {
-      type,
+     
       delay,
       duration,
       ease: 'easeOut',
