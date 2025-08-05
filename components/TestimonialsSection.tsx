@@ -3,8 +3,9 @@
 import { useLanguage } from '@/contexts/LanguageContext';
 import { globalContent as enContent } from '@/data/globalContent/en';
 import { globalContent as hiContent } from '@/data/globalContent/hi';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Quote, Sparkles } from 'lucide-react';
+import { useState, useEffect } from 'react';
 
 const testimonials = {
   en: [
@@ -39,6 +40,22 @@ const testimonials = {
       rating: 5,
       text: "My anxiety reduced significantly after following the spiritual guidance. I feel deeply connected to the universe now.",
       image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200"
+    },
+    {
+      id: 5,
+      name: "Vikram S.",
+      location: "Chennai",
+      rating: 5,
+      text: "The personalized horoscope was spot on. It helped me make crucial life decisions with confidence.",
+      image: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=200"
+    },
+    {
+      id: 6,
+      name: "Anjali R.",
+      location: "Kolkata",
+      rating: 5,
+      text: "The spiritual rituals suggested brought peace to my family. I highly recommend their services.",
+      image: "https://images.pexels.com/photos/415071/pexels-photo-415071.jpeg?auto=compress&cs=tinysrgb&w=200"
     }
   ],
   hi: [
@@ -73,6 +90,22 @@ const testimonials = {
       rating: 5,
       text: "आध्यात्मिक मार्गदर्शन का पालन करने के बाद मेरी चिंता काफी कम हो गई। मैं अब ब्रह्मांड से गहराई से जुड़ा हुआ महसूस करती हूं।",
       image: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=200"
+    },
+    {
+      id: 5,
+      name: "विक्रम स.",
+      location: "चेन्नई",
+      rating: 5,
+      text: "वैयक्तिकृत कुंडली बिल्कुल सटीक थी। इसने मुझे आत्मविश्वास के साथ महत्वपूर्ण जीवन निर्णय लेने में मदद की।",
+      image: "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=200"
+    },
+    {
+      id: 6,
+      name: "अंजलि र.",
+      location: "कोलकाता",
+      rating: 5,
+      text: "सुझाए गए आध्यात्मिक अनुष्ठानों ने मेरे परिवार में शांति लाई। मैं उनकी सेवाओं की अत्यधिक अनुशंसा करता हूं।",
+      image: "https://images.pexels.com/photos/415071/pexels-photo-415071.jpeg?auto=compress&cs=tinysrgb&w=200"
     }
   ]
 };
@@ -81,12 +114,20 @@ export default function TestimonialsSection() {
   const { language } = useLanguage();
   const content = language === 'en' ? enContent : hiContent;
   const testimonialData = testimonials[language];
-  
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  // Auto-scroll effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % testimonialData.length);
+    }, 4000); // Change every 4 seconds
+    return () => clearInterval(interval);
+  }, [testimonialData.length]);
+
   return (
     <section className="relative py-20 bg-gradient-to-b from-[#0F0F12] to-[#1A1A24] overflow-hidden">
       {/* Cosmic Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        {/* Floating Stars */}
         {[...Array(30)].map((_, i) => (
           <div 
             key={i}
@@ -100,8 +141,6 @@ export default function TestimonialsSection() {
             }}
           />
         ))}
-        
-        {/* Cosmic Energy Orbs */}
         <motion.div 
           className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#F0DF20]/10 blur-[100px]"
           animate={{
@@ -156,53 +195,52 @@ export default function TestimonialsSection() {
           </motion.p>
         </motion.div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {testimonialData.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.id}
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.6 + index * 0.15 }}
-              whileHover={{ y: -5 }}
-            >
-              <div className="relative h-full bg-[#FFFFFF]/5 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-[#FFFFFF]/10 hover:border-[#F0DF20]/30 transition-all duration-300 p-6">
-                {/* Quote Icon */}
-                <Quote className="absolute top-6 right-6 w-8 h-8 text-[#F0DF20]/20" />
-                
-                {/* Testimonial Content */}
-                <div className="relative z-10 h-full flex flex-col">
-                  <div className="flex-grow mb-6">
-                    <p className="text-white/90 text-lg leading-relaxed mb-6">
-                      "{testimonial.text}"
-                    </p>
-                  </div>
-                  
-                  <div className="flex items-center justify-between mt-auto">
-                    <div className="flex items-center">
-                      <img
-                        src={testimonial.image}
-                        alt={testimonial.name}
-                        className="w-12 h-12 rounded-full object-cover mr-4 border-2 border-[#F0DF20]"
-                      />
-                      <div>
-                        <h4 className="font-semibold text-white">{testimonial.name}</h4>
-                        <p className="text-[#FFFFFF]/60 text-sm">{testimonial.location}</p>
+        {/* Testimonials Carousel */}
+        <div className="relative">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+            <AnimatePresence mode="wait">
+              {testimonialData.slice(activeIndex, activeIndex + (window.innerWidth < 1024 ? 1 : 4)).map((testimonial, index) => (
+                <motion.div
+                  key={testimonial.id}
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{ duration: 0.6 }}
+                  className={window.innerWidth < 1024 ? "block" : index < 4 ? "block" : "hidden"}
+                >
+                  <div className="relative h-full bg-[#FFFFFF]/5 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-[#FFFFFF]/10 hover:border-[#F0DF20]/30 transition-all duration-300 p-6">
+                    <Quote className="absolute top-6 right-6 w-8 h-8 text-[#F0DF20]/20" />
+                    <div className="relative z-10 h-full flex flex-col">
+                      <div className="flex-grow mb-6">
+                        <p className="text-white/90 text-lg leading-relaxed mb-6">
+                          "{testimonial.text}"
+                        </p>
+                      </div>
+                      <div className="flex items-center justify-between mt-auto">
+                        <div className="flex items-center">
+                          <img
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                            className="w-12 h-12 rounded-full object-cover mr-4 border-2 border-[#F0DF20]"
+                          />
+                          <div>
+                            <h4 className="font-semibold text-white">{testimonial.name}</h4>
+                            <p className="text-[#FFFFFF]/60 text-sm">{testimonial.location}</p>
+                          </div>
+                        </div>
+                        <div className="flex">
+                          {[...Array(testimonial.rating)].map((_, i) => (
+                            <Star key={i} className="w-4 h-4 text-[#F0DF20] fill-current" />
+                          ))}
+                        </div>
                       </div>
                     </div>
-                    <div className="flex">
-                      {[...Array(testimonial.rating)].map((_, i) => (
-                        <Star key={i} className="w-4 h-4 text-[#F0DF20] fill-current" />
-                      ))}
-                    </div>
+                    <div className="absolute inset-0 border-2 border-[#F0DF20] rounded-xl opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                   </div>
-                </div>
-                
-                {/* Hover Effect */}
-                <div className="absolute inset-0 border-2 border-[#F0DF20] rounded-xl opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-              </div>
-            </motion.div>
-          ))}
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>

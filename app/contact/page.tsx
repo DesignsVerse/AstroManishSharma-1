@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Phone, Mail, MapPin, Clock, MessageCircle, Send, Calendar, User, Star, ChevronRight } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, MessageCircle, Send, Calendar, User, Star, ChevronRight, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Contact() {
@@ -101,202 +101,270 @@ export default function Contact() {
 
   const info = contactInfo[language];
 
+  // Animation variants for staggered entry
+  const staggerContainer = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const fadeIn = (direction: string, type: string, delay: number, duration: number) => ({
+    hidden: {
+      opacity: 0,
+      y: direction === 'up' ? 20 : direction === 'down' ? -20 : 0,
+      x: direction === 'left' ? 20 : direction === 'right' ? -20 : 0
+    },
+    show: {
+      opacity: 1,
+      y: 0,
+      x: 0,
+      transition: {
+        type,
+        delay,
+        duration,
+        ease: 'easeOut'
+      }
+    }
+  });
+
   return (
-    <div className="min-h-screen bg-white relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-[#f9f9f9] to-[#f1f1f1] text-[#1a1a1a] relative overflow-hidden">
       <Header />
       
       <main className="pt-16">
         {/* Cosmic Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-[url('/assets/cosmic-pattern-light.png')] bg-cover opacity-10" />
-          {[...Array(20)].map((_, i) => (
-            <div 
+        <div className="fixed inset-0 -z-50 overflow-hidden">
+          <div className="absolute inset-0 bg-[url('/assets/cosmic-pattern.svg')] bg-repeat opacity-10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f9f9f9]/90 to-[#f1f1f1]/90" />
+        </div>
+
+        {/* Animated Cosmic Elements */}
+        <div className="fixed inset-0 -z-40 overflow-hidden pointer-events-none">
+          {[...Array(15)].map((_, i) => (
+            <motion.div
               key={i}
               className="absolute rounded-full bg-[#F0DF20]/20"
               style={{
                 top: `${Math.random() * 100}%`,
                 left: `${Math.random() * 100}%`,
                 width: `${1 + Math.random() * 5}px`,
-                height: `${1 + Math.random() * 5}px`,
-                animation: `twinkle ${3 + Math.random() * 5}s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 5}s`
+                height: `${1 + Math.random() * 5}px`
+              }}
+              animate={{
+                y: [0, -15, 0],
+                opacity: [0.2, 0.4, 0.2],
+                scale: [0.5, 0.7, 0.5]
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: Math.random() * 2
               }}
             />
           ))}
         </div>
 
         {/* Hero Section */}
-        <section className="py-32 relative z-10">
-          <div className="container mx-auto px-4">
+        <section className="py-16 sm:py-20 lg:py-24 relative z-10 ">
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-1/2 left-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle,#F0DF20_0%,transparent_70%)] opacity-10 animate-pulse" 
+              style={{ transform: 'translate(-50%, -50%)' }} />
+          </div>
+
+          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-center mb-16"
+              variants={staggerContainer}
+              initial="hidden"
+              animate="show"
+              className="max-w-5xl mx-auto text-center"
             >
-              <div className="inline-flex items-center bg-[#F0DF20]/20 px-6 py-3 rounded-full border border-[#F0DF20]/30 mb-6">
-                <Star className="w-5 h-5 text-[#F0DF20] mr-2" />
-                <span className="text-[#000000] font-medium tracking-wider">{info.sections.contact}</span>
-              </div>
-              <h1 className="text-5xl md:text-6xl font-bold text-[#000000] mb-6 font-serif tracking-tight">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#F0DF20] to-[#000000]">
-                  {info.title}
+              <motion.div
+                variants={fadeIn('up', 'tween', 0.2, 0.8)}
+                className="inline-flex items-center bg-white/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm mb-4 sm:mb-6"
+              >
+                <Sparkles className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
+                <span className="text-[#F0DF20] font-semibold text-base sm:text-lg">
+                  {info.sections.contact}
                 </span>
-              </h1>
-              <p className="text-xl text-[#000000]/80 max-w-3xl mx-auto leading-relaxed">
+              </motion.div>
+
+              <motion.h1 
+                variants={fadeIn('up', 'tween', 0.4, 0.8)}
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20]"
+              >
+                {info.title}
+              </motion.h1>
+
+              <motion.p 
+                variants={fadeIn('up', 'tween', 0.6, 0.8)}
+                className="text-base sm:text-lg lg:text-xl text-[#1a1a1a]/80 max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-10"
+              >
                 {info.subtitle}
-              </p>
+              </motion.p>
+
+              <motion.div
+                variants={fadeIn('up', 'tween', 0.8, 0.8)}
+              >
+                <Button 
+                  className="bg-gradient-to-r from-[#F0DF20] to-[#F5C742] hover:from-[#F5C742] hover:to-[#F0DF20] text-[#1a1a1a] font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group"
+                >
+                  <div className="flex items-center">
+                    <MessageCircle className="w-5 sm:w-6 h-5 sm:h-6 mr-2 sm:mr-3 transform group-hover:translate-x-1 transition-transform" />
+                    <span>{language === 'en' ? 'Connect with Us' : 'हमसे संपर्क करें'}</span>
+                  </div>
+                </Button>
+              </motion.div>
             </motion.div>
           </div>
         </section>
 
         {/* Main Content */}
-        <div className="relative z-10 pb-32">
-          <div className="container mx-auto px-4">
-            {/* Grid Layout */}
-            <div className="grid lg:grid-cols-3 gap-8">
+        <div className="relative z-10 pb-20 sm:pb-24">
+          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+            <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
               {/* Left Side - Contact Info */}
-              <div className="space-y-8">
-                {/* Contact Card */}
+              <div className="space-y-6 sm:space-y-8">
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.2 }}
+                  variants={fadeIn('left', 'tween', 0.2, 0.6)}
+                  initial="hidden"
+                  animate="show"
                 >
-                  <Card className="bg-white border-[#F0DF20]/30 shadow-lg">
-                    <CardHeader className="border-b border-[#F0DF20]/30">
-                      <CardTitle className="text-2xl font-serif text-[#000000] flex items-center">
-                        <User className="w-6 h-6 text-[#F0DF20] mr-2" />
+                  <Card className="bg-white/90 backdrop-blur-sm border-[#F0DF20]/20 shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
+                    <CardHeader className="border-b border-[#F0DF20]/20">
+                      <CardTitle className="text-xl sm:text-2xl font-serif text-[#1a1a1a] flex items-center">
+                        <User className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
                         {language === 'en' ? 'Sacred Contact' : 'पवित्र संपर्क'}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="p-6 space-y-6">
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-[#F0DF20]/20 rounded-full flex items-center justify-center border border-[#F0DF20]/30">
-                          <Phone className="w-5 h-5 text-[#F0DF20]" />
+                    <CardContent className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+                      <div className="flex items-start space-x-3 sm:space-x-4">
+                        <div className="w-10 sm:w-12 h-10 sm:h-12 bg-[#F0DF20]/10 rounded-full flex items-center justify-center border border-[#F0DF20]/20">
+                          <Phone className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20]" />
                         </div>
                         <div>
-                          <h3 className="font-medium text-[#000000] mb-1 font-serif">
+                          <h3 className="font-medium text-[#1a1a1a] mb-1 font-serif text-sm sm:text-base">
                             {language === 'en' ? 'Divine Line' : 'दिव्य रेखा'}
                           </h3>
-                          <p className="text-[#000000]/80">{info.phone}</p>
+                          <p className="text-[#1a1a1a]/80 text-sm sm:text-base">{info.phone}</p>
                         </div>
                       </div>
-                      
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-[#F0DF20]/20 rounded-full flex items-center justify-center border border-[#F0DF20]/30">
-                          <Mail className="w-5 h-5 text-[#F0DF20]" />
+                      <div className="flex items-start space-x-3 sm:space-x-4">
+                        <div className="w-10 sm:w-12 h-10 sm:h-12 bg-[#F0DF20]/10 rounded-full flex items-center justify-center border border-[#F0DF20]/20">
+                          <Mail className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20]" />
                         </div>
                         <div>
-                          <h3 className="font-medium text-[#000000] mb-1 font-serif">
+                          <h3 className="font-medium text-[#1a1a1a] mb-1 font-serif text-sm sm:text-base">
                             {language === 'en' ? 'Celestial Mail' : 'आकाशीय डाक'}
                           </h3>
-                          <p className="text-[#000000]/80">{info.email}</p>
+                          <p className="text-[#1a1a1a]/80 text-sm sm:text-base">{info.email}</p>
                         </div>
                       </div>
-                      
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-[#F0DF20]/20 rounded-full flex items-center justify-center border border-[#F0DF20]/30">
-                          <MapPin className="w-5 h-5 text-[#F0DF20]" />
+                      <div className="flex items-start space-x-3 sm:space-x-4">
+                        <div className="w-10 sm:w-12 h-10 sm:h-12 bg-[#F0DF20]/10 rounded-full flex items-center justify-center border border-[#F0DF20]/20">
+                          <MapPin className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20]" />
                         </div>
                         <div>
-                          <h3 className="font-medium text-[#000000] mb-1 font-serif">
+                          <h3 className="font-medium text-[#1a1a1a] mb-1 font-serif text-sm sm:text-base">
                             {language === 'en' ? 'Temple of Wisdom' : 'ज्ञान का मंदिर'}
                           </h3>
-                          <p className="text-[#000000]/80">{info.address}</p>
+                          <p className="text-[#1a1a1a]/80 text-sm sm:text-base">{info.address}</p>
                         </div>
                       </div>
-                      
-                      <div className="flex items-start space-x-4">
-                        <div className="w-12 h-12 bg-[#F0DF20]/20 rounded-full flex items-center justify-center border border-[#F0DF20]/30">
-                          <Clock className="w-5 h-5 text-[#F0DF20]" />
+                      <div className="flex items-start space-x-3 sm:space-x-4">
+                        <div className="w-10 sm:w-12 h-10 sm:h-12 bg-[#F0DF20]/10 rounded-full flex items-center justify-center border border-[#F0DF20]/20">
+                          <Clock className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20]" />
                         </div>
                         <div>
-                          <h3 className="font-medium text-[#000000] mb-1 font-serif">
+                          <h3 className="font-medium text-[#1a1a1a] mb-1 font-serif text-sm sm:text-base">
                             {language === 'en' ? 'Cosmic Hours' : 'ब्रह्मांडीय समय'}
                           </h3>
-                          <p className="text-[#000000]/80">{info.hours}</p>
+                          <p className="text-[#1a1a1a]/80 text-sm sm:text-base">{info.hours}</p>
                         </div>
                       </div>
                     </CardContent>
                   </Card>
                 </motion.div>
 
-                {/* Quick Contact */}
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
+                  variants={fadeIn('left', 'tween', 0.4, 0.6)}
+                  initial="hidden"
+                  animate="show"
                 >
-                  <Card className="bg-white border-[#F0DF20]/30 shadow-lg">
-                    <CardHeader className="border-b border-[#F0DF20]/30">
-                      <CardTitle className="text-2xl font-serif text-[#000000] flex items-center">
-                        <MessageCircle className="w-6 h-6 text-[#F0DF20] mr-2" />
+                  <Card className="bg-white/90 backdrop-blur-sm border-[#F0DF20]/20 shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
+                    <CardHeader className="border-b border-[#F0DF20]/20">
+                      <CardTitle className="text-xl sm:text-2xl font-serif text-[#1a1a1a] flex items-center">
+                        <MessageCircle className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
                         {info.sections.quick}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="p-6 space-y-4">
+                    <CardContent className="p-4 sm:p-6 space-y-4">
                       <Button 
-                        className="w-full bg-gradient-to-r from-[#F0DF20] to-[#F0DF20]/80 hover:from-[#F0DF20]/90 hover:to-[#F0DF20] text-[#000000] font-semibold py-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group"
+                        className="w-full bg-gradient-to-r from-[#F0DF20] to-[#F5C742] hover:from-[#F5C742] hover:to-[#F0DF20] text-[#1a1a1a] font-semibold py-4 sm:py-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group"
                       >
                         <div className="flex items-center justify-between w-full">
                           <div className="flex items-center">
-                            <MessageCircle className="w-5 h-5 mr-3" />
-                            <span>{language === 'en' ? 'WhatsApp Divination' : 'व्हाट्सएप ज्योतिष'}</span>
+                            <MessageCircle className="w-4 sm:w-5 h-4 sm:h-5 mr-2 sm:mr-3" />
+                            <span className="text-sm sm:text-base">{language === 'en' ? 'WhatsApp Divination' : 'व्हाट्सएप ज्योतिष'}</span>
                           </div>
-                          <ChevronRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+                          <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5 transform group-hover:translate-x-1 transition-transform" />
                         </div>
                       </Button>
-                      
                       <Button 
-                        className="w-full bg-gradient-to-r from-[#FFFFFF] to-[#F8F8F8] hover:from-[#F8F8F8] hover:to-[#F0F0F0] text-[#000000] font-semibold py-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group border border-[#F0DF20]/30"
+                        className="w-full bg-white/90 backdrop-blur-sm border border-[#F0DF20]/20 hover:bg-[#F0DF20]/10 text-[#1a1a1a] font-semibold py-4 sm:py-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group"
                       >
                         <div className="flex items-center justify-between w-full">
                           <div className="flex items-center">
-                            <Phone className="w-5 h-5 mr-3 text-[#F0DF20]" />
-                            <span>{language === 'en' ? 'Instant Cosmic Call' : 'तत्काल दिव्य कॉल'}</span>
+                            <Phone className="w-4 sm:w-5 h-4 sm:h-5 mr-2 sm:mr-3 text-[#F0DF20]" />
+                            <span className="text-sm sm:text-base">{language === 'en' ? 'Instant Cosmic Call' : 'तत्काल दिव्य कॉल'}</span>
                           </div>
-                          <ChevronRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+                          <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5 transform group-hover:translate-x-1 transition-transform" />
                         </div>
                       </Button>
-
                       <Button 
-                        className="w-full bg-gradient-to-r from-[#FFFFFF] to-[#F8F8F8] hover:from-[#F8F8F8] hover:to-[#F0F0F0] text-[#000000] font-semibold py-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group border border-[#F0DF20]/30"
+                        className="w-full bg-white/90 backdrop-blur-sm border border-[#F0DF20]/20 hover:bg-[#F0DF20]/10 text-[#1a1a1a] font-semibold py-4 sm:py-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group"
                       >
                         <div className="flex items-center justify-between w-full">
                           <div className="flex items-center">
-                            <Calendar className="w-5 h-5 mr-3 text-[#F0DF20]" />
-                            <span>{language === 'en' ? 'Book Sacred Session' : 'पवित्र सत्र बुक करें'}</span>
+                            <Calendar className="w-4 sm:w-5 h-4 sm:h-5 mr-2 sm:mr-3 text-[#F0DF20]" />
+                            <span className="text-sm sm:text-base">{language === 'en' ? 'Book Sacred Session' : 'पवित्र सत्र बुक करें'}</span>
                           </div>
-                          <ChevronRight className="w-5 h-5 transform group-hover:translate-x-1 transition-transform" />
+                          <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5 transform group-hover:translate-x-1 transition-transform" />
                         </div>
                       </Button>
                     </CardContent>
                   </Card>
                 </motion.div>
 
-                {/* Testimonials */}
                 <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
+                  variants={fadeIn('left', 'tween', 0.6, 0.6)}
+                  initial="hidden"
+                  animate="show"
                 >
-                  <Card className="bg-white border-[#F0DF20]/30 shadow-lg">
-                    <CardHeader className="border-b border-[#F0DF20]/30">
-                      <CardTitle className="text-2xl font-serif text-[#000000] flex items-center">
-                        <Star className="w-6 h-6 text-[#F0DF20] mr-2" />
+                  <Card className="bg-white/90 backdrop-blur-sm border-[#F0DF20]/20 shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
+                    <CardHeader className="border-b border-[#F0DF20]/20">
+                      <CardTitle className="text-xl sm:text-2xl font-serif text-[#1a1a1a] flex items-center">
+                        <Star className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
                         {info.sections.testimonials}
                       </CardTitle>
                     </CardHeader>
-                    <CardContent className="p-6 space-y-6">
+                    <CardContent className="p-4 sm:p-6 space-y-4 sm:space-y-6">
                       {info.testimonials.map((testimonial, index) => (
-                        <div key={index} className="relative">
-                          <div className="absolute -top-3 -left-3 text-[#F0DF20]/30 text-4xl">❝</div>
-                          <div className="bg-[#F8F8F8] p-5 rounded-lg border border-[#F0DF20]/30">
-                            <p className="text-[#000000]/90 italic mb-3">"{testimonial.quote}"</p>
-                            <p className="text-[#F0DF20] font-medium">— {testimonial.author}</p>
+                        <motion.div 
+                          key={index} 
+                          className="relative"
+                          variants={fadeIn('up', 'tween', 0.2 + index * 0.2, 0.6)}
+                        >
+                          <div className="absolute -top-3 -left-3 text-[#F0DF20]/30 text-3xl sm:text-4xl">❝</div>
+                          <div className="bg-[#f9f9f9] p-4 sm:p-5 rounded-xl border border-[#F0DF20]/20">
+                            <p className="text-[#1a1a1a]/90 italic text-sm sm:text-base mb-2 sm:mb-3">"{testimonial.quote}"</p>
+                            <p className="text-[#F0DF20] font-medium text-sm sm:text-base">— {testimonial.author}</p>
                           </div>
-                        </div>
+                        </motion.div>
                       ))}
                     </CardContent>
                   </Card>
@@ -305,63 +373,62 @@ export default function Contact() {
 
               {/* Middle - Form */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
+                variants={fadeIn('up', 'tween', 0.3, 0.6)}
+                initial="hidden"
+                animate="show"
                 className="lg:col-span-2"
               >
-                <Card className="bg-white border-[#F0DF20]/30 shadow-xl">
-                  <CardHeader className="border-b border-[#F0DF20]/30">
-                    <CardTitle className="text-3xl font-serif text-[#000000]">
+                <Card className="bg-white/90 backdrop-blur-sm border-[#F0DF20]/20 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl">
+                  <CardHeader className="border-b border-[#F0DF20]/20">
+                    <CardTitle className="text-2xl sm:text-3xl font-serif text-[#1a1a1a]">
                       {language === 'en' ? 'Cosmic Inquiry Form' : 'ब्रह्मांडीय जिज्ञासा फॉर्म'}
                     </CardTitle>
-                    <CardDescription className="text-[#000000]/70">
+                    <CardDescription className="text-[#1a1a1a]/70 text-sm sm:text-base">
                       {language === 'en' ? 
                         'Complete this sacred form to receive divine guidance within 24 hours.' :
                         '24 घंटों के भीतर दिव्य मार्गदर्शन प्राप्त करने के लिए इस पवित्र फॉर्म को पूरा करें।'
                       }
                     </CardDescription>
                   </CardHeader>
-                  <CardContent className="p-8">
-                    <form className="space-y-8">
-                      <div className="grid md:grid-cols-2 gap-8">
+                  <CardContent className="p-4 sm:p-8">
+                    <form className="space-y-6 sm:space-y-8">
+                      <div className="grid md:grid-cols-2 gap-4 sm:gap-8">
                         <div className="space-y-2">
-                          <label className="block text-sm font-medium text-[#000000] mb-2 font-serif">
+                          <label className="block text-sm font-medium text-[#1a1a1a] font-serif">
                             {info.form.name}
                           </label>
                           <Input 
                             placeholder={info.form.name} 
-                            className="w-full bg-white border-[#F0DF20]/50 focus:ring-[#F0DF20] focus:border-[#F0DF20] text-[#000000] placeholder-[#888888]" 
+                            className="w-full bg-white/90 border-[#F0DF20]/20 focus:ring-[#F0DF20] focus:border-[#F0DF20] text-[#1a1a1a] placeholder-[#1a1a1a]/50 rounded-xl" 
                           />
                         </div>
                         <div className="space-y-2">
-                          <label className="block text-sm font-medium text-[#000000] mb-2 font-serif">
+                          <label className="block text-sm font-medium text-[#1a1a1a] font-serif">
                             {info.form.email}
                           </label>
                           <Input 
                             type="email" 
                             placeholder={info.form.email} 
-                            className="w-full bg-white border-[#F0DF20]/50 focus:ring-[#F0DF20] focus:border-[#F0DF20] text-[#000000] placeholder-[#888888]" 
+                            className="w-full bg-white/90 border-[#F0DF20]/20 focus:ring-[#F0DF20] focus:border-[#F0DF20] text-[#1a1a1a] placeholder-[#1a1a1a]/50 rounded-xl" 
                           />
                         </div>
                       </div>
-                      
-                      <div className="grid md:grid-cols-2 gap-8">
+                      <div className="grid md:grid-cols-2 gap-4 sm:gap-8">
                         <div className="space-y-2">
-                          <label className="block text-sm font-medium text-[#000000] mb-2 font-serif">
+                          <label className="block text-sm font-medium text-[#1a1a1a] font-serif">
                             {info.form.phone}
                           </label>
                           <Input 
                             type="tel" 
                             placeholder={info.form.phone} 
-                            className="w-full bg-white border-[#F0DF20]/50 focus:ring-[#F0DF20] focus:border-[#F0DF20] text-[#000000] placeholder-[#888888]" 
+                            className="w-full bg-white/90 border-[#F0DF20]/20 focus:ring-[#F0DF20] focus:border-[#F0DF20] text-[#1a1a1a] placeholder-[#1a1a1a]/50 rounded-xl" 
                           />
                         </div>
                         <div className="space-y-2">
-                          <label className="block text-sm font-medium text-[#000000] mb-2 font-serif">
+                          <label className="block text-sm font-medium text-[#1a1a1a] font-serif">
                             {info.form.service}
                           </label>
-                          <select className="w-full p-3 bg-white border border-[#F0DF20]/50 rounded-md focus:outline-none focus:ring-2 focus:ring-[#F0DF20] text-[#000000]">
+                          <select className="w-full p-3 bg-white/90 border border-[#F0DF20]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F0DF20] text-[#1a1a1a] text-sm sm:text-base">
                             <option value="">{language === 'en' ? 'Select celestial service' : 'दिव्य सेवा चुनें'}</option>
                             {info.services.map((service, index) => (
                               <option key={index} value={service}>{service}</option>
@@ -369,9 +436,8 @@ export default function Contact() {
                           </select>
                         </div>
                       </div>
-                      
                       <div className="space-y-2">
-                        <label className="block text-sm font-medium text-[#000000] mb-2 font-serif">
+                        <label className="block text-sm font-medium text-[#1a1a1a] font-serif">
                           {info.form.message}
                         </label>
                         <Textarea 
@@ -379,18 +445,17 @@ export default function Contact() {
                             "Describe your spiritual needs and cosmic questions..." : 
                             "अपनी आध्यात्मिक आवश्यकताओं और ब्रह्मांडीय प्रश्नों का वर्णन करें..."
                           } 
-                          className="w-full h-40 bg-white border-[#F0DF20]/50 focus:ring-[#F0DF20] focus:border-[#F0DF20] text-[#000000] placeholder-[#888888] resize-none" 
+                          className="w-full h-32 sm:h-40 bg-white/90 border-[#F0DF20]/20 focus:ring-[#F0DF20] focus:border-[#F0DF20] text-[#1a1a1a] placeholder-[#1a1a1a]/50 rounded-xl resize-none" 
                         />
                       </div>
-                      
-                      <div className="pt-4">
+                      <div className="pt-2 sm:pt-4">
                         <Button 
                           type="submit"
-                          className="w-full bg-gradient-to-r from-[#F0DF20] to-[#F0DF20]/80 hover:from-[#F0DF20]/90 hover:to-[#F0DF20] text-[#000000] font-semibold py-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 group"
+                          className="w-full bg-gradient-to-r from-[#F0DF20] to-[#F5C742] hover:from-[#F5C742] hover:to-[#F0DF20] text-[#1a1a1a] font-semibold py-4 sm:py-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group"
                         >
                           <div className="flex items-center justify-center">
-                            <Send className="w-5 h-5 mr-3 transform group-hover:translate-x-1 transition-transform" />
-                            <span className="text-lg">{info.form.send}</span>
+                            <Send className="w-4 sm:w-5 h-4 sm:h-5 mr-2 sm:mr-3 transform group-hover:translate-x-1 transition-transform" />
+                            <span className="text-sm sm:text-lg">{info.form.send}</span>
                           </div>
                         </Button>
                       </div>
@@ -403,53 +468,50 @@ export default function Contact() {
         </div>
 
         {/* Map Section */}
-        <section className="py-20 relative z-10 bg-[#F8F8F8]">
-          <div className="container mx-auto px-4">
+        <section className="py-16 sm:py-20 bg-gradient-to-b from-[#f1f1f1] to-[#f9f9f9]">
+          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+              variants={fadeIn('up', 'tween', 0.2, 0.8)}
+              initial="hidden"
+              whileInView="show"
               viewport={{ once: true }}
-              className="text-center mb-16"
+              className="text-center mb-12 sm:mb-16"
             >
-              <div className="inline-flex items-center bg-[#F0DF20]/20 px-6 py-3 rounded-full border border-[#F0DF20]/30 mb-6">
-                <MapPin className="w-5 h-5 text-[#F0DF20] mr-2" />
-                <span className="text-[#000000] font-medium tracking-wider">{info.sections.location}</span>
+              <div className="inline-flex items-center bg-[#F0DF20]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm mb-4 sm:mb-6">
+                <MapPin className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
+                <span className="text-[#F0DF20] font-semibold text-base sm:text-lg">{info.sections.location}</span>
               </div>
-              <h2 className="text-4xl font-bold text-[#000000] mb-6 font-serif tracking-tight">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#F0DF20] to-[#000000]">
-                  {language === 'en' ? 'Temple of Cosmic Wisdom' : 'ब्रह्मांडीय ज्ञान का मंदिर'}
-                </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20]">
+                {language === 'en' ? 'Temple of Cosmic Wisdom' : 'ब्रह्मांडीय ज्ञान का मंदिर'}
               </h2>
-              <p className="text-xl text-[#000000]/80 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg text-[#1a1a1a]/80 max-w-3xl mx-auto leading-relaxed">
                 {language === 'en' ? 
                   'Our sacred space is designed for spiritual transformation and cosmic alignment. Visit us for profound consultations.' :
                   'हमारा पवित्र स्थान आध्यात्मिक परिवर्तन और ब्रह्मांडीय संरेखण के लिए डिज़ाइन किया गया है। गहन परामर्श के लिए हमसे मिलें।'
                 }
               </p>
             </motion.div>
-            
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
+              variants={fadeIn('up', 'tween', 0.4, 0.8)}
+              initial="hidden"
+              whileInView="show"
               viewport={{ once: true }}
-              className="relative bg-white rounded-2xl shadow-xl p-1 max-w-6xl mx-auto border border-[#F0DF20]/30 overflow-hidden"
+              className="relative bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-1 max-w-5xl mx-auto border border-[#F0DF20]/20 overflow-hidden"
             >
-              <div className="absolute inset-0 bg-[url('/assets/cosmic-grid-light.png')] bg-cover opacity-10" />
-              <div className="relative bg-white rounded-xl h-96 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-20 h-20 bg-[#F0DF20]/20 rounded-full flex items-center justify-center border border-[#F0DF20]/30 mx-auto mb-6">
-                    <MapPin className="w-10 h-10 text-[#F0DF20]" />
+              <div className="absolute inset-0 bg-[url('/assets/cosmic-pattern.svg')] bg-repeat opacity-10" />
+              <div className="relative bg-white rounded-xl h-80 sm:h-96 flex items-center justify-center">
+                <div className="text-center p-4 sm:p-8">
+                  <div className="w-16 sm:w-20 h-16 sm:h-20 bg-[#F0DF20]/10 rounded-full flex items-center justify-center border border-[#F0DF20]/20 mx-auto mb-4 sm:mb-6">
+                    <MapPin className="w-8 sm:w-10 h-8 sm:h-10 text-[#F0DF20]" />
                   </div>
-                  <h3 className="text-2xl font-serif text-[#000000] mb-3">
+                  <h3 className="text-xl sm:text-2xl font-serif text-[#1a1a1a] mb-2 sm:mb-3">
                     {language === 'en' ? 'Sacred Location' : 'पवित्र स्थान'}
                   </h3>
-                  <p className="text-[#000000]/80 mb-6 max-w-md mx-auto">
+                  <p className="text-[#1a1a1a]/80 text-sm sm:text-base mb-4 sm:mb-6 max-w-md mx-auto">
                     {info.address}
                   </p>
                   <Button 
-                    className="bg-gradient-to-r from-[#F0DF20] to-[#F0DF20]/80 hover:from-[#F0DF20]/90 hover:to-[#F0DF20] text-[#000000] font-semibold px-8"
+                    className="bg-gradient-to-r from-[#F0DF20] to-[#F5C742] hover:from-[#F5C742] hover:to-[#F0DF20] text-[#1a1a1a] font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                   >
                     {language === 'en' ? 'Get Directions' : 'दिशा-निर्देश प्राप्त करें'}
                   </Button>
@@ -461,14 +523,6 @@ export default function Contact() {
       </main>
 
       <Footer />
-
-      <style jsx>{`
-        @keyframes twinkle {
-          0% { opacity: 0.2; }
-          50% { opacity: 1; }
-          100% { opacity: 0.2; }
-        }
-      `}</style>
     </div>
   );
 }

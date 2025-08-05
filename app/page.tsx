@@ -6,7 +6,7 @@ import TestimonialsSection from '@/components/TestimonialsSection';
 import AchievementsSection from '@/components/AchievementsSection';
 import FAQSection from '@/components/FAQSection';
 import Footer from '@/components/Footer';
-import CTABanner from '@/components/cta/cta';
+import CTABanner from '@/components/cta';
 
 export default function Home() {
   return (

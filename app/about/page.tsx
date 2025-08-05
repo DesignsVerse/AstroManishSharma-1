@@ -11,6 +11,7 @@ import { Badge, Sparkles, Star, Award, Users, BookOpen, MessageCircle, Quote, Gl
 import { useEffect, useRef } from 'react';
 import { motion, useAnimation, useInView } from 'framer-motion';
 
+
 export default function About() {
   const { language } = useLanguage();
   const content = language === 'en' ? enContent : hiContent;
@@ -108,58 +109,87 @@ export default function About() {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-gray-900 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-[#f9f9f9] to-[#f1f1f1] text-[#1a1a1a] relative overflow-hidden">
+      {/* Cosmic Background Elements */}
+      <div className="absolute inset-0 overflow-hidden opacity-10">
+        <div className="absolute top-0 left-0 w-full h-full bg-[url('/assets/cosmic-pattern.svg')] bg-repeat opacity-10" />
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-[#F0DF20]"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              fontSize: `${1 + Math.random() * 1}rem`
+            }}
+            animate={{
+              y: [0, -15, 0],
+              opacity: [0.1, 0.3, 0.1],
+              scale: [0.5, 0.7, 0.5]
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: Math.random() * 2
+            }}
+          >
+            {['☉', '☽', '☿', '♀', '♂', '♃', '♄', '♅', '♆', '♇', '⚸', '⚹'][i % 12]}
+          </motion.div>
+        ))}
+      </div>
+
       <Header />
       
-      <main className="pt-16">
+      <main className="pt-24 sm:pt-28">
         {/* Hero Section */}
-        <section className="py-32 relative z-10">
-          <div className="container mx-auto px-6">
-            <div className="grid lg:grid-cols-2 gap-20 items-center">
+        <section className="py-16 sm:py-20 relative z-10">
+          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+            <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
               <motion.div 
-                className="relative"
+                className="relative mx-auto"
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="absolute -inset-8 bg-[#F0DF20]/10 rounded-full blur-xl"></div>
+                <div className="absolute -inset-4 sm:-inset-6 bg-gradient-to-r from-[#F0DF20]/10 to-[#F5C742]/10 rounded-full blur-lg"></div>
                 <img
                   src="https://images.pexels.com/photos/8566443/pexels-photo-8566443.jpeg?auto=compress&cs=tinysrgb&w=800"
                   alt="Pandit Ji"
-                  className="relative z-10 w-full max-w-2xl mx-auto rounded-full shadow-2xl border-8 border-[#F0DF20]"
+                  className="relative z-10 w-full max-w-[300px] sm:max-w-[400px] lg:max-w-[500px] mx-auto rounded-full shadow-xl border-4 sm:border-6 border-[#F0DF20]"
                 />
                 <motion.div 
-                  className="absolute -bottom-4 -right-4 bg-[#F0DF20] p-4 rounded-full shadow-2xl"
-                  animate={{ y: [0, -10, 0] }}
+                  className="absolute -bottom-2 -right-2 sm:-bottom-3 sm:-right-3 bg-gradient-to-r from-[#F0DF20] to-[#F5C742] p-2 sm:p-3 rounded-full shadow-lg"
+                  animate={{ y: [0, -8, 0] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 >
-                  <span className="text-4xl text-white">🕉</span>
+                  <span className="text-2xl sm:text-3xl text-white">🕉</span>
                 </motion.div>
               </motion.div>
               
               <motion.div 
-                initial={{ opacity: 0, x: 100 }}
+                initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-                className="space-y-10 text-center lg:text-left"
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="space-y-6 sm:space-y-8 text-center lg:text-left"
               >
                 <motion.div 
-                  whileHover={{ scale: 1.1 }}
-                  className="inline-flex items-center bg-[#F0DF20]/20 px-8 py-4 rounded-2xl border border-[#F0DF20]/30 mb-8 shadow-md"
+                  whileHover={{ scale: 1.05 }}
+                  className="inline-flex items-center bg-[#F0DF20]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm"
                 >
-                  <Sparkles className="w-8 h-8 text-[#F0DF20] mr-4" />
-                  <span className="text-[#F0DF20] font-bold text-xl">{content.about.title}</span>
+                  <Sparkles className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
+                  <span className="text-[#F0DF20] font-semibold text-base sm:text-lg">{content.about.title}</span>
                 </motion.div>
-                <h1 className="text-6xl md:text-7xl font-extrabold text-[#F0DF20] font-serif leading-tight">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20] font-serif leading-tight">
                   {content.about.title}
                 </h1>
-                <h2 className="text-3xl md:text-4xl text-gray-800 font-semibold font-serif">
+                <h2 className="text-2xl sm:text-3xl text-[#1a1a1a] font-semibold font-serif">
                   {content.about.subtitle}
                 </h2>
-                <p className="text-2xl text-gray-700 leading-relaxed max-w-3xl">
+                <p className="text-base sm:text-lg text-[#1a1a1a]/80 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
                   {content.about.description}
                 </p>
 
-                <div className="flex flex-wrap justify-center lg:justify-start gap-8">
+                <div className="flex flex-wrap justify-center lg:justify-start gap-4 sm:gap-6">
                   {[
                     { icon: Star, text: `15+ ${content.common.years} ${content.common.experience}`, fill: true },
                     { icon: Users, text: `5000+ ${content.common.clients}` },
@@ -169,21 +199,20 @@ export default function About() {
                       key={i}
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: i * 0.3, duration: 0.5 }}
-                      whileHover={{ scale: 1.1 }}
-                      className="flex items-center space-x-4 bg-[#F0DF20]/10 p-5 rounded-2xl border border-[#F0DF20]/20 shadow-lg"
+                      transition={{ delay: i * 0.2, duration: 0.5 }}
+                      whileHover={{ scale: 1.05 }}
+                      className="flex items-center space-x-3 bg-[#F0DF20]/10 backdrop-blur-sm p-3 sm:p-4 rounded-xl border border-[#F0DF20]/20 shadow-sm"
                     >
-                      <stat.icon className={`w-8 h-8 text-[#F0DF20] ${stat.fill ? 'fill-current' : ''}`} />
-                      <span className="text-lg font-semibold text-gray-800">{stat.text}</span>
+                      <stat.icon className={`w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] ${stat.fill ? 'fill-current' : ''}`} />
+                      <span className="text-sm sm:text-base font-medium text-[#1a1a1a]">{stat.text}</span>
                     </motion.div>
                   ))}
                 </div>
 
                 <Button 
-                  size="lg"
-                  className="bg-[#F0DF20] hover:bg-[#F0DF20]/90 text-gray-900 font-bold px-12 py-6 rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 transform hover:scale-105"
+                  className="bg-gradient-to-r from-[#F0DF20] to-[#F5C742] hover:from-[#F5C742] hover:to-[#F0DF20] text-[#1a1a1a] font-semibold px-8 sm:px-10 py-3 sm:py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
                 >
-                  <MessageCircle className="w-6 h-6 mr-4" />
+                  <MessageCircle className="w-5 sm:w-6 h-5 sm:h-6 mr-2 sm:mr-3" />
                   {content.common.getConsultation}
                 </Button>
               </motion.div>
@@ -192,20 +221,20 @@ export default function About() {
         </section>
 
         {/* Expertise Section */}
-        <section className="py-32 bg-gray-50 relative z-10">
-          <div className="container mx-auto px-6">
-            <AnimatedSection className="text-center mb-24">
+        <section className="py-16 sm:py-20 bg-gradient-to-b from-[#f1f1f1] to-[#f9f9f9] relative z-10">
+          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+            <AnimatedSection className="text-center mb-12 sm:mb-16">
               <motion.div 
-                whileHover={{ scale: 1.1 }}
-                className="inline-flex items-center bg-[#F0DF20]/20 px-8 py-4 rounded-2xl border border-[#F0DF20]/30 mb-8 shadow-md"
+                whileHover={{ scale: 1.05 }}
+                className="inline-flex items-center bg-[#F0DF20]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm"
               >
-                <Sparkles className="w-8 h-8 text-[#F0DF20] mr-4" />
-                <span className="text-[#F0DF20] font-bold text-xl">{language === 'en' ? 'Areas of Expertise' : 'विशेषज्ञता के क्षेत्र'}</span>
+                <Sparkles className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
+                <span className="text-[#F0DF20] font-semibold text-base sm:text-lg">{language === 'en' ? 'Areas of Expertise' : 'विशेषज्ञता के क्षेत्र'}</span>
               </motion.div>
-              <h2 className="text-6xl font-extrabold text-[#F0DF20] mb-10 font-serif">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20] mt-4 sm:mt-6 font-serif">
                 {language === 'en' ? 'Areas of Expertise' : 'विशेषज्ञता के क्षेत्र'}
               </h2>
-              <p className="text-3xl text-gray-700 max-w-5xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg text-[#1a1a1a]/80 max-w-3xl sm:max-w-4xl mx-auto mt-3 sm:mt-4 leading-relaxed">
                 {language === 'en' ? 
                   'Comprehensive astrological services backed by years of study and practice' : 
                   'वर्षों के अध्ययन और अभ्यास द्वारा समर्थित व्यापक ज्योतिषीय सेवाएं'
@@ -213,21 +242,21 @@ export default function About() {
               </p>
             </AnimatedSection>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {expertiseAreas.map((area, index) => (
-                <AnimatedCard key={index} delay={index * 0.15}>
-                  <Card className="relative bg-white border border-[#F0DF20]/30 hover:border-[#F0DF20]/60 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden group rounded-3xl">
-                    <div className="absolute inset-0 bg-[#F0DF20]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute top-8 right-8 text-[#F0DF20]/30 text-4xl group-hover:text-[#F0DF20]/70 transition-colors duration-500">🕉</div>
-                    <CardContent className="p-10 text-center relative z-10">
+                <AnimatedCard key={index} delay={index * 0.1}>
+                  <Card className="relative bg-white/90 backdrop-blur-sm border border-[#F0DF20]/20 hover:border-[#F0DF20]/40 shadow-md hover:shadow-lg transition-all duration-300 group rounded-2xl overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#F0DF20]/5 to-[#F5C742]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute top-4 right-4 text-[#F0DF20]/30 text-2xl sm:text-3xl group-hover:text-[#F0DF20]/70 transition-colors duration-300">🕉</div>
+                    <CardContent className="p-6 sm:p-8 text-center relative z-10">
                       <motion.div 
-                        className="w-24 h-24 bg-[#F0DF20]/30 rounded-full flex items-center justify-center mx-auto mb-8 border-2 border-[#F0DF20]/50 group-hover:scale-110 transition-transform duration-500"
+                        className="w-16 h-16 sm:w-20 sm:h-20 bg-[#F0DF20]/20 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 border border-[#F0DF20]/30 group-hover:scale-105 transition-transform duration-300"
                         whileHover={{ rotate: 360 }}
-                        transition={{ duration: 1 }}
+                        transition={{ duration: 0.8 }}
                       >
-                        <BookOpen className="w-12 h-12 text-[#F0DF20]" />
+                        <BookOpen className="w-8 sm:w-10 h-8 sm:h-10 text-[#F0DF20]" />
                       </motion.div>
-                      <h3 className="text-2xl font-bold text-gray-900 font-serif group-hover:text-[#F0DF20] transition-colors duration-500">{area}</h3>
+                      <h3 className="text-lg sm:text-xl font-semibold text-[#1a1a1a] font-serif group-hover:text-[#F0DF20] transition-colors duration-300">{area}</h3>
                     </CardContent>
                   </Card>
                 </AnimatedCard>
@@ -237,20 +266,20 @@ export default function About() {
         </section>
 
         {/* Qualifications Section */}
-        <section className="py-32 relative z-10">
-          <div className="container mx-auto px-6">
-            <AnimatedSection className="text-center mb-24">
+        <section className="py-16 sm:py-20 relative z-10">
+          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+            <AnimatedSection className="text-center mb-12 sm:mb-16">
               <motion.div 
-                whileHover={{ scale: 1.1 }}
-                className="inline-flex items-center bg-[#F0DF20]/20 px-8 py-4 rounded-2xl border border-[#F0DF20]/30 mb-8 shadow-md"
+                whileHover={{ scale: 1.05 }}
+                className="inline-flex items-center bg-[#F0DF20]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm"
               >
-                <Sparkles className="w-8 h-8 text-[#F0DF20] mr-4" />
-                <span className="text-[#F0DF20] font-bold text-xl">{language === 'en' ? 'Qualifications & Certifications' : 'योग्यताएं और प्रमाणन'}</span>
+                <Sparkles className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
+                <span className="text-[#F0DF20] font-semibold text-base sm:text-lg">{language === 'en' ? 'Qualifications & Certifications' : 'योग्यताएं और प्रमाणन'}</span>
               </motion.div>
-              <h2 className="text-6xl font-extrabold text-[#F0DF20] mb-10 font-serif">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20] mt-4 sm:mt-6 font-serif">
                 {language === 'en' ? 'Qualifications & Certifications' : 'योग्यताएं और प्रमाणन'}
               </h2>
-              <p className="text-3xl text-gray-700 max-w-5xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg text-[#1a1a1a]/80 max-w-3xl sm:max-w-4xl mx-auto mt-3 sm:mt-4 leading-relaxed">
                 {language === 'en' ? 
                   'Professional credentials and continuous learning in various astrological disciplines' : 
                   'विभिन्न ज्योतिषीय विषयों में पेशेवर प्रमाण पत्र और निरंतर शिक्षा'
@@ -258,19 +287,19 @@ export default function About() {
               </p>
             </AnimatedSection>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {qualifications.map((qualification, index) => (
-                <AnimatedCard key={index} delay={index * 0.15}>
-                  <div className="relative bg-white rounded-3xl p-10 text-center border border-[#F0DF20]/30 hover:border-[#F0DF20]/60 shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden group">
-                    <div className="absolute inset-0 bg-[#F0DF20]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    <div className="absolute top-8 right-8 text-[#F0DF20]/30 text-4xl group-hover:text-[#F0DF20]/70 transition-colors duration-500">🕉</div>
+                <AnimatedCard key={index} delay={index * 0.1}>
+                  <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl p-6 sm:p-8 text-center border border-[#F0DF20]/20 hover:border-[#F0DF20]/40 shadow-md hover:shadow-lg transition-all duration-300 group overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-[#F0DF20]/5 to-[#F5C742]/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="absolute top-4 right-4 text-[#F0DF20]/30 text-2xl sm:text-3xl group-hover:text-[#F0DF20]/70 transition-colors duration-300">🕉</div>
                     <motion.div
-                      whileHover={{ scale: 1.2, rotate: 360 }}
-                      transition={{ duration: 0.8 }}
+                      whileHover={{ scale: 1.1, rotate: 360 }}
+                      transition={{ duration: 0.6 }}
                     >
-                      <Award className="w-20 h-20 text-[#F0DF20] mx-auto mb-8" />
+                      <Award className="w-12 sm:w-16 h-12 sm:h-16 text-[#F0DF20] mx-auto mb-4 sm:mb-6" />
                     </motion.div>
-                    <h3 className="text-2xl font-bold text-gray-900 font-serif group-hover:text-[#F0DF20] transition-colors duration-500">{qualification}</h3>
+                    <h3 className="text-lg sm:text-xl font-semibold text-[#1a1a1a] font-serif group-hover:text-[#F0DF20] transition-colors duration-300">{qualification}</h3>
                   </div>
                 </AnimatedCard>
               ))}
@@ -279,34 +308,34 @@ export default function About() {
         </section>
 
         {/* Philosophy Section */}
-        <section className="py-32 bg-gray-50 relative z-10">
-          <div className="container mx-auto px-6">
-            <div className="max-w-6xl mx-auto">
-              <AnimatedSection className="text-center mb-24">
+        <section className="py-16 sm:py-20 bg-gradient-to-b from-[#f1f1f1] to-[#f9f9f9] relative z-10">
+          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+            <div className="max-w-5xl mx-auto">
+              <AnimatedSection className="text-center mb-12 sm:mb-16">
                 <motion.div 
-                  whileHover={{ scale: 1.1 }}
-                  className="inline-flex items-center bg-[#F0DF20]/20 px-8 py-4 rounded-2xl border border-[#F0DF20]/30 mb-8 shadow-md"
+                  whileHover={{ scale: 1.05 }}
+                  className="inline-flex items-center bg-[#F0DF20]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm"
                 >
-                  <Sparkles className="w-8 h-8 text-[#F0DF20] mr-4" />
-                  <span className="text-[#F0DF20] font-bold text-xl">{language === 'en' ? 'Our Philosophy' : 'हमारा दर्शन'}</span>
+                  <Sparkles className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
+                  <span className="text-[#F0DF20] font-semibold text-base sm:text-lg">{language === 'en' ? 'Our Philosophy' : 'हमारा दर्शन'}</span>
                 </motion.div>
-                <h2 className="text-6xl font-extrabold text-[#F0DF20] mb-12 font-serif">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20] mt-4 sm:mt-6 font-serif">
                   {language === 'en' ? 'Our Philosophy' : 'हमारा दर्शन'}
                 </h2>
               </AnimatedSection>
 
-              <div className="grid md:grid-cols-2 gap-12">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
                 {philosophyPoints.map((point, index) => (
-                  <AnimatedCard key={index} delay={index * 0.2}>
-                    <div className="bg-white rounded-3xl p-10 border border-[#F0DF20]/30 hover:border-[#F0DF20]/60 transition-all duration-500 shadow-xl hover:shadow-2xl">
-                      <p className="text-xl text-gray-700 leading-relaxed font-serif">{point}</p>
+                  <AnimatedCard key={index} delay={index * 0.1}>
+                    <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-[#F0DF20]/20 hover:border-[#F0DF20]/40 transition-all duration-300 shadow-md hover:shadow-lg">
+                      <p className="text-base sm:text-lg text-[#1a1a1a]/80 font-serif leading-relaxed">{point}</p>
                     </div>
                   </AnimatedCard>
                 ))}
               </div>
 
-              <AnimatedSection className="text-center mt-20">
-                <p className="text-2xl text-gray-700 leading-relaxed max-w-4xl mx-auto font-serif">
+              <AnimatedSection className="text-center mt-10 sm:mt-12">
+                <p className="text-base sm:text-lg text-[#1a1a1a]/80 max-w-3xl mx-auto font-serif leading-relaxed">
                   {language === 'en' ? 
                     "Our approach combines ancient wisdom with modern understanding, providing practical solutions that can be easily integrated into contemporary life." :
                     "हमारा दृष्टिकोण प्राचीन ज्ञान को आधुनिक समझ के साथ जोड़ता है, व्यावहारिक समाधान प्रदान करता है जो समकालीन जीवन में आसानी से एकीकृत किए जा सकते हैं।"
@@ -318,38 +347,38 @@ export default function About() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-32 relative z-10">
-          <div className="container mx-auto px-6">
-            <AnimatedSection className="text-center mb-24">
+        <section className="py-16 sm:py-20 relative z-10">
+          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+            <AnimatedSection className="text-center mb-12 sm:mb-16">
               <motion.div 
-                whileHover={{ scale: 1.1 }}
-                className="inline-flex items-center bg-[#F0DF20]/20 px-8 py-4 rounded-2xl border border-[#F0DF20]/30 mb-8 shadow-md"
+                whileHover={{ scale: 1.05 }}
+                className="inline-flex items-center bg-[#F0DF20]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm"
               >
-                <Quote className="w-8 h-8 text-[#F0DF20] mr-4" />
-                <span className="text-[#F0DF20] font-bold text-xl">{language === 'en' ? 'Client Testimonials' : 'ग्राहक प्रशंसापत्र'}</span>
+                <Quote className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
+                <span className="text-[#F0DF20] font-semibold text-base sm:text-lg">{language === 'en' ? 'Client Testimonials' : 'ग्राहक प्रशंसापत्र'}</span>
               </motion.div>
-              <h2 className="text-6xl font-extrabold text-[#F0DF20] mb-10 font-serif">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20] mt-4 sm:mt-6 font-serif">
                 {language === 'en' ? 'What Our Clients Say' : 'हमारे ग्राहक क्या कहते हैं'}
               </h2>
-              <p className="text-3xl text-gray-700 max-w-5xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg text-[#1a1a1a]/80 max-w-3xl sm:max-w-4xl mx-auto mt-3 sm:mt-4 leading-relaxed">
                 {language === 'en' ? 'Real stories from satisfied clients' : 'संतुष्ट ग्राहकों से वास्तविक कहानियां'}
               </p>
             </AnimatedSection>
 
-            <div className="grid md:grid-cols-3 gap-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {testimonials.map((testimonial, index) => (
-                <AnimatedCard key={index} delay={index * 0.25}>
-                  <Card className="bg-white border border-[#F0DF20]/30 hover:border-[#F0DF20]/60 transition-all duration-500 shadow-xl hover:shadow-2xl rounded-3xl overflow-hidden">
-                    <CardContent className="p-10">
-                      <Quote className="w-10 h-10 text-[#F0DF20]/50 mb-6" />
-                      <p className="text-xl text-gray-700 mb-8 italic font-serif">"{testimonial.quote}"</p>
+                <AnimatedCard key={index} delay={index * 0.15}>
+                  <Card className="bg-white/90 backdrop-blur-sm border border-[#F0DF20]/20 hover:border-[#F0DF20]/40 transition-all duration-300 shadow-md hover:shadow-lg rounded-2xl overflow-hidden">
+                    <CardContent className="p-6 sm:p-8">
+                      <Quote className="w-6 sm:w-8 h-6 sm:h-8 text-[#F0DF20]/50 mb-4 sm:mb-6" />
+                      <p className="text-base sm:text-lg text-[#1a1a1a]/80 mb-6 sm:mb-8 italic font-serif">"{testimonial.quote}"</p>
                       <div className="flex items-center justify-between">
-                        <span className="text-lg font-semibold text-gray-900">{testimonial.author}</span>
+                        <span className="text-sm sm:text-base font-semibold text-[#1a1a1a]">{testimonial.author}</span>
                         <div className="flex">
                           {Array.from({length: Math.floor(testimonial.rating)}).map((_, i) => (
-                            <Star key={i} className="w-6 h-6 text-[#F0DF20] fill-current" />
+                            <Star key={i} className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20] fill-current" />
                           ))}
-                          {testimonial.rating % 1 !== 0 && <Star className="w-6 h-6 text-[#F0DF20] fill-current opacity-50" />}
+                          {testimonial.rating % 1 !== 0 && <Star className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20] fill-current opacity-50" />}
                         </div>
                       </div>
                     </CardContent>
@@ -361,30 +390,30 @@ export default function About() {
         </section>
 
         {/* Media Mentions Section */}
-        <section className="py-32 bg-gray-50 relative z-10">
-          <div className="container mx-auto px-6">
-            <AnimatedSection className="text-center mb-24">
+        <section className="py-16 sm:py-20 bg-gradient-to-b from-[#f1f1f1] to-[#f9f9f9] relative z-10">
+          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+            <AnimatedSection className="text-center mb-12 sm:mb-16">
               <motion.div 
-                whileHover={{ scale: 1.1 }}
-                className="inline-flex items-center bg-[#F0DF20]/20 px-8 py-4 rounded-2xl border border-[#F0DF20]/30 mb-8 shadow-md"
+                whileHover={{ scale: 1.05 }}
+                className="inline-flex items-center bg-[#F0DF20]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm"
               >
-                <Newspaper className="w-8 h-8 text-[#F0DF20] mr-4" />
-                <span className="text-[#F0DF20] font-bold text-xl">{language === 'en' ? 'Media Mentions' : 'मीडिया उल्लेख'}</span>
+                <Newspaper className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
+                <span className="text-[#F0DF20] font-semibold text-base sm:text-lg">{language === 'en' ? 'Media Mentions' : 'मीडिया उल्लेख'}</span>
               </motion.div>
-              <h2 className="text-6xl font-extrabold text-[#F0DF20] mb-10 font-serif">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20] mt-4 sm:mt-6 font-serif">
                 {language === 'en' ? 'Featured In' : 'में विशेष रुप से प्रदर्शित'}
               </h2>
-              <p className="text-3xl text-gray-700 max-w-5xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg text-[#1a1a1a]/80 max-w-3xl sm:max-w-4xl mx-auto mt-3 sm:mt-4 leading-relaxed">
                 {language === 'en' ? 'Recognized by leading publications and platforms' : 'अग्रणी प्रकाशनों और प्लेटफार्मों द्वारा मान्यता प्राप्त'}
               </p>
             </AnimatedSection>
 
-            <div className="grid md:grid-cols-2 gap-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
               {mediaMentions.map((mention, index) => (
-                <AnimatedCard key={index} delay={index * 0.2}>
-                  <div className="bg-white rounded-3xl p-10 border border-[#F0DF20]/30 hover:border-[#F0DF20]/60 transition-all duration-500 shadow-xl hover:shadow-2xl flex items-center space-x-8">
-                    <Globe className="w-16 h-16 text-[#F0DF20] flex-shrink-0" />
-                    <p className="text-xl text-gray-700 font-serif">{mention}</p>
+                <AnimatedCard key={index} delay={index * 0.1}>
+                  <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-[#F0DF20]/20 hover:border-[#F0DF20]/40 transition-all duration-300 shadow-md hover:shadow-lg flex items-center space-x-4 sm:space-x-6">
+                    <Globe className="w-8 sm:w-10 h-8 sm:h-10 text-[#F0DF20] flex-shrink-0" />
+                    <p className="text-base sm:text-lg text-[#1a1a1a]/80 font-serif">{mention}</p>
                   </div>
                 </AnimatedCard>
               ))}
@@ -393,41 +422,42 @@ export default function About() {
         </section>
 
         {/* Timeline Section */}
-        <section className="py-32 relative z-10">
-          <div className="container mx-auto px-6">
-            <AnimatedSection className="text-center mb-24">
+        <section className="py-16 sm:py-20 relative z-10">
+          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+            <AnimatedSection className="text-center mb-12 sm:mb-16">
               <motion.div 
-                whileHover={{ scale: 1.1 }}
-                className="inline-flex items-center bg-[#F0DF20]/20 px-8 py-4 rounded-2xl border border-[#F0DF20]/30 mb-8 shadow-md"
+                whileHover={{ scale: 1.05 }}
+                className="inline-flex items-center bg-[#F0DF20]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm"
               >
-                <Calendar className="w-8 h-8 text-[#F0DF20] mr-4" />
-                <span className="text-[#F0DF20] font-bold text-xl">{language === 'en' ? 'Journey Timeline' : 'यात्रा समयरेखा'}</span>
+                <Calendar className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
+                <span className="text-[#F0DF20] font-semibold text-base sm:text-lg">{language === 'en' ? 'Journey Timeline' : 'यात्रा समयरेखा'}</span>
               </motion.div>
-              <h2 className="text-6xl font-extrabold text-[#F0DF20] mb-10 font-serif">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20] mt-4 sm:mt-6 font-serif">
                 {language === 'en' ? 'My Astrological Journey' : 'मेरी ज्योतिषीय यात्रा'}
               </h2>
-              <p className="text-3xl text-gray-700 max-w-5xl mx-auto leading-relaxed">
+              <p className="text-base sm:text-lg text-[#1a1a1a]/80 max-w-3xl sm:max-w-4xl mx-auto mt-3 sm:mt-4 leading-relaxed">
                 {language === 'en' ? 'Key milestones in a lifetime dedicated to cosmic wisdom' : 'ब्रह्मांडीय ज्ञान के लिए समर्पित जीवन की प्रमुख मील के पत्थर'}
               </p>
             </AnimatedSection>
 
-            <div className="relative">
-              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[#F0DF20]"></div>
+            <div className="relative max-w-4xl mx-auto">
+              <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-[#F0DF20] to-[#F5C742]"></div>
               {timelineEvents.map((event, index) => (
-                <AnimatedCard key={index} delay={index * 0.2}>
-                  <div className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} mb-16`}>
-                    <div className={`w-1/2 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
+                <AnimatedCard key={index} delay={index * 0.1}>
+                  <div className={`flex items-center ${index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'} mb-8 sm:mb-12`}>
+                    <div className={`w-1/2 ${index % 2 === 0 ? 'pr-4 sm:pr-6 text-right' : 'pl-4 sm:pl-6 text-left'}`}>
                       <motion.div 
-                        className="bg-white rounded-3xl p-8 border border-[#F0DF20]/30 inline-block shadow-xl"
+                        className="bg-white/90 backdrop-blur-sm rounded-2xl p-4 sm:p-6 border border-[#F0DF20]/20 shadow-md hover:shadow-lg"
                         whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.3 }}
                       >
-                        <h3 className="text-3xl font-bold text-[#F0DF20] mb-2">{event.year}</h3>
-                        <p className="text-xl text-gray-700">{event.event}</p>
+                        <h3 className="text-xl sm:text-2xl font-semibold text-[#F0DF20] mb-2">{event.year}</h3>
+                        <p className="text-base sm:text-lg text-[#1a1a1a]/80">{event.event}</p>
                       </motion.div>
                     </div>
                     <div className="w-1/2"></div>
-                    <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-[#F0DF20] w-8 h-8 rounded-full flex items-center justify-center z-10">
-                      <span className="text-white font-bold">{index + 1}</span>
+                    <div className="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-[#F0DF20] to-[#F5C742] w-6 sm:w-8 h-6 sm:h-8 rounded-full flex items-center justify-center z-10 shadow-md">
+                      <span className="text-white font-semibold text-sm sm:text-base">{index + 1}</span>
                     </div>
                   </div>
                 </AnimatedCard>
@@ -437,23 +467,22 @@ export default function About() {
         </section>
 
         {/* Call to Action Section */}
-        <section className="py-32 bg-[#F0DF20] relative z-10">
-          <div className="container mx-auto px-6 text-center">
-            <AnimatedSection className="text-center">
-              <h2 className="text-6xl font-extrabold text-white mb-10 font-serif">
+        <section className="py-16 sm:py-20 bg-gradient-to-r from-[#F0DF20] to-[#F5C742] relative z-10">
+          <div className="container mx-auto px-3 sm:px-4 lg:px-6 text-center">
+            <AnimatedSection>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 font-serif">
                 {language === 'en' ? 'Ready to Discover Your Destiny?' : 'क्या आप अपना भाग्य जानने के लिए तैयार हैं?'}
               </h2>
-              <p className="text-3xl text-white/90 mb-16 max-w-4xl mx-auto font-serif">
+              <p className="text-base sm:text-lg text-white/90 mb-8 sm:mb-10 max-w-3xl mx-auto font-serif leading-relaxed">
                 {language === 'en' ? 
                   'Book a consultation today and embark on a journey of self-discovery and cosmic wisdom.' : 
                   'आज ही परामर्श बुक करें और आत्म-खोज तथा ब्रह्मांडीय ज्ञान की यात्रा पर निकलें।'
                 }
               </p>
               <Button 
-                size="lg"
-                className="bg-white hover:bg-gray-100 text-[#F0DF20] font-bold px-16 py-8 rounded-2xl shadow-3xl hover:shadow-4xl transition-all duration-500 transform hover:scale-110"
+                className="bg-white hover:bg-gray-100 text-[#1a1a1a] font-semibold px-8 sm:px-10 py-3 sm:py-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
               >
-                <MessageCircle className="w-8 h-8 mr-4" />
+                <MessageCircle className="w-5 sm:w-6 h-5 sm:h-6 mr-2 sm:mr-3" />
                 {language === 'en' ? 'Schedule Consultation' : 'परामर्श शेड्यूल करें'}
               </Button>
             </AnimatedSection>
@@ -466,31 +495,7 @@ export default function About() {
   );
 }
 
-const AnimatedSection = ({ children, className }: { children: React.ReactNode, className: string }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-200px" });
-  const controls = useAnimation();
-
-  useEffect(() => {
-    if (isInView) {
-      controls.start({ opacity: 1, y: 0 });
-    }
-  }, [isInView, controls]);
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 100 }}
-      animate={controls}
-      transition={{ duration: 1, ease: "easeOut" }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
-const AnimatedCard = ({ children, delay = 0 }: { children: React.ReactNode, delay: number }) => {
+const AnimatedSection = ({ children, className }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const controls = useAnimation();
@@ -506,7 +511,31 @@ const AnimatedCard = ({ children, delay = 0 }: { children: React.ReactNode, dela
       ref={ref}
       initial={{ opacity: 0, y: 50 }}
       animate={controls}
-      transition={{ duration: 0.8, delay, ease: "easeOut" }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+const AnimatedCard = ({ children, delay = 0 }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const controls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      controls.start({ opacity: 1, y: 0 });
+    }
+  }, [isInView, controls]);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={controls}
+      transition={{ duration: 0.6, delay, ease: "easeOut" }}
     >
       {children}
     </motion.div>
