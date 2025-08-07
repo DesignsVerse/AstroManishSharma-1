@@ -84,7 +84,7 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <div className="relative w-full max-w-[280px] sm:max-w-[360px] lg:max-w-md mx-auto">
+            <div className="relative w-full max-w-[320px] sm:max-w-[460px] lg:max-w-md mx-auto">
               <motion.div
                 className="absolute -inset-3 bg-[#F0DF20]/10 rounded-3xl blur-lg sm:blur-xl z-0"
                 animate={{

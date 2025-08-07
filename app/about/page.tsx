@@ -115,7 +115,7 @@ export default function About() {
               >
                 <div className="absolute -inset-6 bg-gradient-to-r from-[#F0DF20]/10 to-[#F5C742]/10 rounded-3xl blur-lg"></div>
                 <img
-                  src="/maa-baglamukhi-temple.jpg"
+                  src="/home/cta.jpg"
                   alt="Maa Baglamukhi Temple"
                   className="relative z-10 w-full rounded-2xl shadow-xl border-4 border-[#F0DF20]"
                 />

@@ -15,6 +15,13 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
     { href: '/', label: content.navigation.home },
@@ -22,7 +29,6 @@ export default function Header() {
     { 
       href: '/services', 
       label: content.navigation.services,
-      
     },
     { href: '/blog', label: content.navigation.blog },
     { href: '/gallery', label: content.navigation.gallery },
@@ -49,8 +55,6 @@ export default function Header() {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-[1000]">
-      
-
       {/* Main Header */}
       <motion.header 
         className={`bg-white/90 backdrop-blur-sm transition-all duration-300 ${scrolled ? 'shadow-md border-b border-gray-100' : ''}`}
@@ -99,8 +103,6 @@ export default function Header() {
                     >
                       {item.label}
                     </Link>
-                    
-                   
                   </motion.div>
                 ))}
               </div>
@@ -156,7 +158,7 @@ export default function Header() {
           </nav>
         </div>
 
-        {/* Mobile Menu - Opens from Left Side */}
+        {/* Mobile Menu - Opens from Top */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
@@ -171,15 +173,15 @@ export default function Header() {
                 onClick={() => setIsMenuOpen(false)}
               ></div>
               
-              {/* Menu Panel */}
+              {/* Menu Panel - Now animates from top */}
               <motion.div
-                initial={{ x: '-100%' }}
-                animate={{ x: 0 }}
-                exit={{ x: '-100%' }}
-                transition={{ type: 'spring', damping: 25 }}
-                className="absolute left-0 top-0 h-full w-3/4 max-w-xs bg-white/95 backdrop-blur-sm shadow-xl overflow-y-auto z-[1003]"
+                initial={{ y: '-100%', opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                exit={{ y: '-100%', opacity: 0 }}
+                transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                className="absolute top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-xl overflow-y-auto z-[1003]"
               >
-                <div className="flex flex-col h-full">
+                <div className="flex flex-col">
                   {/* Menu Header */}
                   <div className="flex justify-between items-center p-4 sm:p-5 border-b border-gray-100">
                     <Link href="/" className="flex items-center space-x-2" onClick={() => setIsMenuOpen(false)}>
@@ -197,7 +199,7 @@ export default function Header() {
                   </div>
                   
                   {/* Menu Items */}
-                  <div className="flex-1 flex flex-col p-3 sm:p-4 space-y-1">
+                  <div className="flex flex-col p-3 sm:p-4 space-y-1">
                     {navItems.map((item) => (
                       <div key={item.href} className="border-b border-gray-100 last:border-0">
                         <Link
@@ -207,7 +209,6 @@ export default function Header() {
                         >
                           {item.label}
                         </Link>
-                        
                       </div>
                     ))}
                   </div>

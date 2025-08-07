@@ -65,7 +65,7 @@ export default function ConsultationBanner() {
           >
             <div className="relative w-full min-h-[200px] sm:min-h-[250px] lg:min-h-[300px]">
               <motion.img 
-                src="/astrology-consultation.jpg" 
+                src="/home/cta.jpg" 
                 alt="Astrologer consultation"
                 className="h-full w-full object-cover object-center rounded-b-2xl lg:rounded-b-none lg:rounded-l-2xl"
                 whileHover={{ scale: 1.02 }}
