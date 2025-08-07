@@ -54,7 +54,7 @@ export const globalContent = {
     badgeText: "Our Offerings"
   },
   blog: {
-    title: "Blog",
+    title: "Sacred Wisdom from Baglamukhi Mandir",
     subtitle: "Latest Articles and Insights on Astrology and Spirituality"
   },
   testimonials: {

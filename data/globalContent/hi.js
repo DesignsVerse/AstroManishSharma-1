@@ -54,7 +54,7 @@ export const globalContent = {
     badgeText: "हमारी पेशकश"
   },
   blog: {
-    title: "ब्लॉग",
+    title: "बगलामुखी मंदिर का पावन ज्ञान",
     subtitle: "ज्योतिष और आध्यात्मिकता पर नवीनतम लेख और अंतर्दृष्टि"
   },
   testimonials: {

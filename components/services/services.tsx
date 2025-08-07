@@ -88,7 +88,7 @@ export default function Services() {
 
       <Header />
 
-      <main className="pt-24 sm:pt-28">
+      <main className="pt-10 sm:pt-16">
         {/* Hero Section with Search Bar */}
         <section className="relative py-16 sm:py-20 overflow-hidden">
           <div className="absolute inset-0 -z-10">

@@ -45,7 +45,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-[vh] pt-24  flex items-center justify-center overflow-hidden bg-white">
+    <section className="relative min-h-[vh] pt-10  flex items-center justify-center overflow-hidden bg-white">
       {/* Subtle Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div

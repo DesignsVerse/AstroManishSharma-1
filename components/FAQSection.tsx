@@ -14,55 +14,55 @@ const faqs = {
   en: [
     {
       id: 1,
-      question: "What is Vedic Astrology?",
-      answer: "Vedic Astrology, also known as Jyotish, is an ancient system of astrology that originated in India thousands of years ago. It's based on the position of celestial bodies at the time of birth and provides insights into personality, relationships, career, and life events."
+      question: "What is the significance of Maa Baglamukhi Nalkheda Mandir?",
+      answer: "Maa Baglamukhi Nalkheda Mandir is one of the three major Baglamukhi Siddhapeeths in India, renowned for its divine energy and blessings. Devotees visit to seek protection, victory over obstacles, and fulfillment of desires through Maa Baglamukhi’s powerful grace."
     },
     {
       id: 2,
-      question: "How accurate are astrological predictions?",
-      answer: "The accuracy of astrological predictions depends on various factors including the astrologer's expertise, the quality of birth data, and the specific area of life being analyzed. With proper analysis and experienced interpretation, Vedic astrology can provide highly accurate insights."
+      question: "Who is Deepak Ji, and what is his role at the temple?",
+      answer: "Deepak Ji is a revered spiritual guide at Maa Baglamukhi Nalkheda Mandir, known for his expertise in Vedic Havan and Tantra-Mantra rituals. He assists devotees in performing authentic pujas and provides spiritual guidance to overcome life’s challenges."
     },
     {
       id: 3,
-      question: "What information do I need for a consultation?",
-      answer: "For an accurate astrological consultation, you'll need your exact birth date, time, and place. The more precise this information is, the more accurate your birth chart and predictions will be."
+      question: "What types of rituals are performed at Maa Baglamukhi Mandir?",
+      answer: "The temple offers a variety of rituals, including Maa Baglamukhi Havan, Shatru Vinash Puja, and Lakshmi Prapti Puja, all conducted with traditional Vedic methods to invoke Maa Baglamukhi’s blessings for prosperity, protection, and success."
     },
     {
       id: 4,
-      question: "Do gemstones really work?",
-      answer: "Gemstones have been used in Vedic astrology for thousands of years as remedial measures. When prescribed correctly based on your birth chart, they can help balance planetary energies and bring positive changes to your life."
+      question: "How can I participate in pujas at the temple?",
+      answer: "Devotees can participate in pujas by visiting the temple or booking online consultations with Deepak Ji. You’ll need to provide your name and specific intentions for the ritual, which will be performed on your behalf with utmost devotion."
     },
     {
       id: 5,
-      question: "How often should I consult an astrologer?",
-      answer: "The frequency of consultations depends on your personal needs and life circumstances. Some people prefer annual consultations, while others may seek guidance during major life transitions or challenging periods."
+      question: "What are the benefits of Maa Baglamukhi’s blessings?",
+      answer: "Maa Baglamukhi’s blessings offer protection from enemies, resolution of legal disputes, financial stability, and spiritual growth. Devotees experience peace, strength, and success through the divine energy of the Siddhapeeth."
     }
   ],
   hi: [
     {
       id: 1,
-      question: "वैदिक ज्योतिष क्या है?",
-      answer: "वैदिक ज्योतिष, जिसे ज्योतिष भी कहते हैं, एक प्राचीन ज्योतिष प्रणाली है जो हजारों साल पहले भारत में उत्पन्न हुई थी। यह जन्म के समय खगोलीय पिंडों की स्थिति पर आधारित है और व्यक्तित्व, रिश्तों, करियर और जीवन की घटनाओं में अंतर्दृष्टि प्रदान करता है।"
+      question: "माँ बगलामुखी नलखेड़ा मंदिर का महत्व क्या है?",
+      answer: "माँ बगलामुखी नलखेड़ा मंदिर भारत के तीन प्रमुख बगलामुखी सिद्धपीठों में से एक है, जो अपनी दिव्य ऊर्जा और आशीर्वाद के लिए प्रसिद्ध है। भक्त यहाँ सुरक्षा, बाधाओं पर विजय, और इच्छाओं की पूर्ति के लिए माँ बगलामुखी की कृपा प्राप्त करने आते हैं।"
     },
     {
       id: 2,
-      question: "ज्योतिषीय भविष्यवाणियां कितनी सटीक होती हैं?",
-      answer: "ज्योतिषीय भविष्यवाणियों की सटीकता विभिन्न कारकों पर निर्भर करती है जिसमें ज्योतिषी की विशेषज्ञता, जन्म डेटा की गुणवत्ता, और विश्लेषण किए जा रहे जीवन के विशिष्ट क्षेत्र शामिल हैं। उचित विश्लेषण और अनुभवी व्याख्या के साथ, वैदिक ज्योतिष अत्यधिक सटीक अंतर्दृष्टि प्रदान कर सकता है।"
+      question: "दीपक जी कौन हैं, और मंदिर में उनकी क्या भूमिका है?",
+      answer: "दीपक जी माँ बगलामुखी नलखेड़ा मंदिर में एक सम्मानित आध्यात्मिक मार्गदर्शक हैं, जो वैदिक हवन और तंत्र-मंत्र अनुष्ठानों में अपनी विशेषज्ञता के लिए जाने जाते हैं। वे भक्तों को प्रामाणिक पूजा करने में सहायता करते हैं और जीवन की चुनौतियों को पार करने के लिए आध्यात्मिक मार्गदर्शन प्रदान करते हैं।"
     },
     {
       id: 3,
-      question: "परामर्श के लिए मुझे किस जानकारी की आवश्यकता है?",
-      answer: "एक सटीक ज्योतिषीय परामर्श के लिए, आपको अपनी सटीक जन्म तारीख, समय और स्थान की आवश्यकता होगी। यह जानकारी जितनी सटीक होगी, आपकी जन्म कुंडली और भविष्यवाणियां उतनी ही सटीक होंगी।"
+      question: "माँ बगलामुखी मंदिर में किस प्रकार के अनुष्ठान किए जाते हैं?",
+      answer: "मंदिर में विभिन्न अनुष्ठान किए जाते हैं, जिनमें माँ बगलामुखी हवन, शत्रु विनाश पूजा, और लक्ष्मी प्राप्ति पूजा शामिल हैं। ये सभी पारंपरिक वैदिक विधियों से किए जाते हैं ताकि समृद्धि, सुरक्षा, और सफलता के लिए माँ बगलामुखी का आशीर्वाद प्राप्त हो।"
     },
     {
       id: 4,
-      question: "क्या रत्न वास्तव में काम करते हैं?",
-      answer: "रत्नों का उपयोग वैदिक ज्योतिष में हजारों वर्षों से उपचारात्मक उपाय के रूप में किया जाता रहा है। जब आपकी जन्म कुंडली के आधार पर सही तरीके से निर्धारित किए जाएं, तो वे ग्रहीय ऊर्जा को संतुलित करने और आपके जीवन में सकारात्मक बदलाव लाने में मदद कर सकते हैं।"
+      question: "मैं मंदिर में पूजा में कैसे भाग ले सकता हूँ?",
+      answer: "भक्त मंदिर में आकर या दीपक जी के साथ ऑनलाइन परामर्श बुक करके पूजा में भाग ले सकते हैं। आपको अपना नाम और अनुष्ठान के लिए विशिष्ट उद्देश्य प्रदान करना होगा, जिसे आपके लिए पूरी श्रद्धा के साथ किया जाएगा।"
     },
     {
       id: 5,
-      question: "मुझे कितनी बार ज्योतिषी से परामर्श करना चाहिए?",
-      answer: "परामर्श की आवृत्ति आपकी व्यक्तिगत आवश्यकताओं और जीवन परिस्थितियों पर निर्भर करती है। कुछ लोग वार्षिक परामर्श पसंद करते हैं, जबकि अन्य प्रमुख जीवन परिवर्तन या चुनौतीपूर्ण अवधि के दौरान मार्गदर्शन चाह सकते हैं।"
+      question: "माँ बगलामुखी के आशीर्वाद के क्या लाभ हैं?",
+      answer: "माँ बगलामुखी का आशीर्वाद शत्रुओं से सुरक्षा, कानूनी विवादों का समाधान, वित्तीय स्थिरता, और आध्यात्मिक विकास प्रदान करता है। भक्त सिद्धपीठ की दिव्य ऊर्जा के माध्यम से शांति, शक्ति, और सफलता का अनुभव करते हैं।"
     }
   ]
 };

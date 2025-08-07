@@ -14,19 +14,18 @@ export default function ConsultationBanner() {
     setIsMounted(true);
   }, []);
 
-  const content = {
+  const content =  {
     en: {
-      title: "Book a Consultation with India's Top Astrologer!",
-      description: "Experience the power of pure astrology with our expert services, including kundali analysis, palm reading, face reading, and personalized online consultations for your cosmic journey.",
-      button: "Book Now"
+      title: "Seek Maa Baglamukhi’s Blessings with Pandit Manish Sharma Ji!",
+      description: "Experience divine guidance with Pandit Manish Sharma Ji at Maa Baglamukhi Nalkheda Mandir. Book your puja, including Maa Baglamukhi Havan or Shatru Vinash Puja, for protection, prosperity, and spiritual growth.",
+      button: "Book Puja Now"
     },
     hi: {
-      title: "भारत के शीर्ष ज्योतिषी के साथ परामर्श बुक करें!",
-      description: "हमारी विशेषज्ञ सेवाओं के साथ शुद्ध ज्योतिष की शक्ति का अनुभव करें, जिसमें कुंडली विश्लेषण, हस्तरेखा, चेहरा पढ़ना और आपकी आध्यात्मिक यात्रा के लिए व्यक्तिगत ऑनलाइन परामर्श शामिल हैं।",
-      button: "अभी बुक करें"
+      title: "पंडित मनीष शर्मा जी के साथ माँ बगलामुखी का आशीर्वाद प्राप्त करें!",
+      description: "माँ बगलामुखी नलखेड़ा मंदिर में पंडित मनीष शर्मा जी के साथ दिव्य मार्गदर्शन का अनुभव करें। सुरक्षा, समृद्धि और आध्यात्मिक विकास के लिए माँ बगलामुखी हवन या शत्रु विनाश पूजा बुक करें।",
+      button: "पूजा अभी बुक करें"
     }
   }[language];
-
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },

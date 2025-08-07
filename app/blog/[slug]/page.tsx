@@ -21,7 +21,7 @@ export default function BlogPost({ params }: BlogPostProps) {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <main className="pt-16">
+      <main className="">
         <BlogContentClient slug={params.slug} />
       </main>
       <Footer />

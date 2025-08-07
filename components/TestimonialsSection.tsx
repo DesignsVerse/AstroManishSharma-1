@@ -115,14 +115,39 @@ export default function TestimonialsSection() {
   const content = language === 'en' ? enContent : hiContent;
   const testimonialData = testimonials[language];
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile view
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024); // lg breakpoint
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Auto-scroll effect
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => (prevIndex + 1) % testimonialData.length);
-    }, 4000); // Change every 4 seconds
+      setActiveIndex((prevIndex) => {
+        const cardsToShow = isMobile ? 1 : 3;
+        return (prevIndex + cardsToShow) % testimonialData.length;
+      });
+    }, 5000); // Change every 5 seconds
     return () => clearInterval(interval);
-  }, [testimonialData.length]);
+  }, [testimonialData.length, isMobile]);
+
+  // Calculate visible testimonials
+  const getVisibleTestimonials = () => {
+    const cardsToShow = isMobile ? 1 : 3;
+    const visible = [];
+    for (let i = 0; i < cardsToShow; i++) {
+      const index = (activeIndex + i) % testimonialData.length;
+      visible.push(testimonialData[index]);
+    }
+    return visible;
+  };
 
   return (
     <section className="relative py-20 bg-gradient-to-b from-[#0F0F12] to-[#1A1A24] overflow-hidden">
@@ -168,7 +193,7 @@ export default function TestimonialsSection() {
             whileHover={{ scale: 1.05 }}
           >
             <Sparkles className="w-5 h-5 text-[#F0DF20] mr-2" />
-            <span className="text-sm  font-medium text-white tracking-wider">
+            <span className="text-sm font-medium text-white tracking-wider">
               {content.testimonials.badgeText}
             </span>
           </motion.div>
@@ -197,15 +222,16 @@ export default function TestimonialsSection() {
 
         {/* Testimonials Carousel */}
         <div className="relative">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <AnimatePresence mode="wait">
-              {testimonialData.slice(activeIndex, activeIndex).map((testimonial, index) => (
+              {getVisibleTestimonials().map((testimonial, index) => (
                 <motion.div
-                  key={testimonial.id}
+                  key={`${testimonial.id}-${activeIndex}`}
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -50 }}
                   transition={{ duration: 0.6 }}
+                  className="w-full"
                 >
                   <div className="relative h-full bg-[#FFFFFF]/5 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-[#FFFFFF]/10 hover:border-[#F0DF20]/30 transition-all duration-300 p-6">
                     <Quote className="absolute top-6 right-6 w-8 h-8 text-[#F0DF20]/20" />

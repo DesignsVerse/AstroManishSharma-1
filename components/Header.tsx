@@ -22,11 +22,7 @@ export default function Header() {
     { 
       href: '/services', 
       label: content.navigation.services,
-      subItems: [
-        { href: '/services/astrology', label: language === 'en' ? 'Astrology' : 'ज्योतिष' },
-        { href: '/services/palmistry', label: language === 'en' ? 'Palmistry' : 'हस्तरेखा' },
-        { href: '/services/numerology', label: language === 'en' ? 'Numerology' : 'अंक ज्योतिष' }
-      ]
+      
     },
     { href: '/blog', label: content.navigation.blog },
     { href: '/gallery', label: content.navigation.gallery },
@@ -53,57 +49,7 @@ export default function Header() {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-[1000]">
-      {/* Top Announcement Bar */}
-      <motion.div 
-        className="bg-[#000000] text-white h-10 sm:h-12 flex items-center justify-center px-3 sm:px-4 lg:px-6"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="flex items-center justify-between w-full max-w-5xl mx-auto">
-          <a
-            href="tel:+911234567890"
-            className="flex items-center gap-1.5 bg-clip-text text-transparent bg-gradient-to-r from-amber-400 to-amber-600 text-sm sm:text-base font-medium"
-          >
-            <Phone size={16} className="text-amber-400" />
-            <span>+91 123 456 7890</span>
-          </a>
-          <div className="hidden sm:flex items-center gap-3">
-            <motion.a 
-              href="https://facebook.com" 
-              className="text-amber-400 hover:text-amber-500 transition-colors"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Facebook size={16} />
-            </motion.a>
-            <motion.a 
-              href="https://twitter.com" 
-              className="text-amber-400 hover:text-amber-500 transition-colors"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Twitter size={16} />
-            </motion.a>
-            <motion.a 
-              href="https://instagram.com" 
-              className="text-amber-400 hover:text-amber-500 transition-colors"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Instagram size={16} />
-            </motion.a>
-            <motion.a 
-              href="https://linkedin.com" 
-              className="text-amber-400 hover:text-amber-500 transition-colors"
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <Linkedin size={16} />
-            </motion.a>
-          </div>
-        </div>
-      </motion.div>
+      
 
       {/* Main Header */}
       <motion.header 
@@ -152,26 +98,9 @@ export default function Header() {
                       className="flex items-center gap-1 text-gray-700 hover:text-amber-600 transition-colors font-medium text-sm py-2"
                     >
                       {item.label}
-                      {item.subItems && <ChevronDown className="w-3 h-3 mt-0.5" />}
                     </Link>
                     
-                    {item.subItems && (
-                      <motion.div 
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="absolute left-0 top-full mt-1 w-48 bg-white/95 backdrop-blur-sm shadow-lg rounded-lg py-2 hidden group-hover:block border border-amber-100"
-                      >
-                        {item.subItems.map((subItem) => (
-                          <Link
-                            key={subItem.href}
-                            href={subItem.href}
-                            className="block px-4 py-1.5 text-sm text-gray-700 hover:bg-amber-50 hover:text-amber-600 transition-colors"
-                          >
-                            {subItem.label}
-                          </Link>
-                        ))}
-                      </motion.div>
-                    )}
+                   
                   </motion.div>
                 ))}
               </div>
@@ -278,20 +207,7 @@ export default function Header() {
                         >
                           {item.label}
                         </Link>
-                        {item.subItems && (
-                          <div className="pl-4 py-1 space-y-1">
-                            {item.subItems.map((subItem) => (
-                              <Link
-                                key={subItem.href}
-                                href={subItem.href}
-                                className="block text-gray-600 hover:bg-amber-50 px-3 py-1.5 text-sm rounded-lg transition-colors"
-                                onClick={() => setIsMenuOpen(false)}
-                              >
-                                {subItem.label}
-                              </Link>
-                            ))}
-                          </div>
-                        )}
+                        
                       </div>
                     ))}
                   </div>
