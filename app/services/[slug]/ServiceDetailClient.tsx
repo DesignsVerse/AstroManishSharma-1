@@ -14,7 +14,20 @@ import { Clock, Star, Check, Phone, MessageCircle, ChevronRight, ArrowRight } fr
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { fadeIn, staggerContainer } from '../../../utils/motion';
-import { Service } from '@/types/service';
+
+// Define the Service interface
+interface Service {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  icon?: string;
+  price?: string;
+  duration?: string;
+  tags?: string[];
+  features?: string[];
+  shortDescription?: string;
+}
 
 export type ServiceDetailClientProps = { slug: string };
 
@@ -119,7 +132,7 @@ export default function ServiceDetailClient({ slug }: ServiceDetailClientProps) 
                   )}
                   {service.tags && (
                     <div className="flex flex-wrap gap-2">
-                      {service.tags.map((tag, index) => (
+                      {service.tags.map((tag: string, index: number) => (
                         <Badge
                           key={index}
                           variant="secondary"
