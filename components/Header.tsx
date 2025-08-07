@@ -15,13 +15,6 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const navItems = [
     { href: '/', label: content.navigation.home },

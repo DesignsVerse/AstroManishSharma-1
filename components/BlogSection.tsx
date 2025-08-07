@@ -18,29 +18,8 @@ export default function BlogSection() {
   const scrollContainerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
-  // Auto-scroll effect
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prevIndex) => {
-        const maxIndex = window.innerWidth < 768 ? blogs.length - 1 : blogs.length - 4;
-        return prevIndex >= maxIndex ? 0 : prevIndex + 1;
-      });
-    }, 4000); // Change every 4 seconds
-    return () => clearInterval(interval);
-  }, [blogs.length]);
 
-  // Scroll to active card
-  useEffect(() => {
-    const scrollContainer = scrollContainerRef.current;
-    if (scrollContainer) {
-      const cardWidth = window.innerWidth < 768 ? (scrollContainer as HTMLElement).offsetWidth : 312; // 300px card + 12px gap
-      (scrollContainer as HTMLElement).scrollTo({
-        left: activeIndex * cardWidth,
-        behavior: 'smooth',
-      });
-    }
-  }, [activeIndex]);
-
+  
   return (
     <section className="relative py-12 sm:py-16 bg-gradient-to-b from-[#f9f9f9] to-[#f1f1f1] overflow-hidden">
       {/* Cosmic Background Elements */}

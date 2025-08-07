@@ -206,7 +206,6 @@ export default function TestimonialsSection() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -50 }}
                   transition={{ duration: 0.6 }}
-                  className={window.innerWidth < 1024 ? "block" : index < 4 ? "block" : "hidden"}
                 >
                   <div className="relative h-full bg-[#FFFFFF]/5 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-[#FFFFFF]/10 hover:border-[#F0DF20]/30 transition-all duration-300 p-6">
                     <Quote className="absolute top-6 right-6 w-8 h-8 text-[#F0DF20]/20" />
