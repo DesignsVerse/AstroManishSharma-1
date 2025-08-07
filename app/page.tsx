@@ -12,7 +12,6 @@ import CTABanner from '@/components/cta';
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <Header />
       <Hero />
       <ServicesSection />
       <AchievementsSection />
@@ -20,7 +19,6 @@ export default function Home() {
       <BlogSection />
       <TestimonialsSection />
       <FAQSection />
-      <Footer />
     </main>
   );
 }

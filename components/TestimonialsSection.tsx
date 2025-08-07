@@ -199,7 +199,7 @@ export default function TestimonialsSection() {
         <div className="relative">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
             <AnimatePresence mode="wait">
-              {testimonialData.slice(activeIndex, activeIndex + (window.innerWidth < 1024 ? 1 : 4)).map((testimonial, index) => (
+              {testimonialData.slice(activeIndex, activeIndex).map((testimonial, index) => (
                 <motion.div
                   key={testimonial.id}
                   initial={{ opacity: 0, x: 50 }}
