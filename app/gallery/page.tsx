@@ -164,7 +164,7 @@ export default function Gallery() {
       const orbs = document.querySelectorAll('[data-parallax]');
       orbs.forEach(orb => {
         const scrollPosition = window.scrollY;
-        orb.style.transform = `translateY(${scrollPosition * 0.1}px)`;
+        // orb.style.transform = `translateY(${scrollPosition * 0.1}px)`;
       });
     };
     window.addEventListener('scroll', handleScroll);

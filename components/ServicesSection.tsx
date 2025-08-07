@@ -102,7 +102,7 @@ export default function ServicesSection() {
           <motion.h2 
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 font-serif"
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-[#F0DF20] to-gray-700">
+            <span className="bg-clip-text pt-4 text-transparent bg-gradient-to-r from-gray-900 via-[#F0DF20] to-gray-700">
               {content.services.title.split(' ').slice(0, -1).join(' ')}
             </span>{' '}
             <span className="text-[#F0DF20]">{content.services.title.split(' ').pop()}</span>
@@ -139,15 +139,7 @@ export default function ServicesSection() {
                 {/* Card Content */}
                 <div className="relative p-4 sm:p-5 h-full flex flex-col">
                   {/* Service Header */}
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-[#F0DF20]/10 rounded-lg mb-3 shadow-inner group-hover:bg-[#F0DF20]/20 transition-colors">
-                      <span className="text-xl sm:text-2xl text-[#F0DF20]">{service.icon}</span>
-                    </div>
-                    <span className="text-xs bg-[#F0DF20]/10 text-gray-800 px-2 py-1 rounded-full flex items-center group-hover:bg-[#F0DF20]/20 transition-colors">
-                      <Clock className="w-3 h-3 mr-1" />
-                      {service.duration}
-                    </span>
-                  </div>
+                  
                   
                   {/* Service Details */}
                   <div className="flex-grow">
@@ -156,13 +148,11 @@ export default function ServicesSection() {
                     </h3>
                     
                     <p className="text-xs sm:text-sm text-gray-600 mb-3 leading-relaxed line-clamp-3">
-                      {service.shortDescription}
+                      {service.description}
                     </p>
                     
                     <div className="flex items-center justify-between mb-4">
-                      <span className="font-bold text-base sm:text-lg text-gray-900">
-                        {service.price}
-                      </span>
+                      
                       <div className="flex items-center text-amber-500">
                         {[...Array(5)].map((_, i) => (
                           <Star 
@@ -176,7 +166,7 @@ export default function ServicesSection() {
                   
                   {/* Action Buttons */}
                   <div className="flex space-x-2 mt-auto">
-                    <Link href={`/services/${service.slug}`} className="flex-1">
+                    <Link href={`/services/${service.id}`} className="flex-1">
                       <Button 
                         variant="outline" 
                         className="w-full border-gray-300 bg-white/70 hover:bg-[#F0DF20]/10 hover:border-[#F0DF20] hover:text-[#F0DF20] transition-all duration-300 group text-[10px] sm:text-sm font-medium py-1 sm:py-2 text-ellipsis overflow-hidden whitespace-nowrap"
@@ -212,7 +202,7 @@ export default function ServicesSection() {
               variant="outline"
               className="border-[#F0DF20] text-[#F0DF20] hover:bg-[#F0DF20]/10 hover:text-gray-900 font-semibold px-8 sm:px-10 py-5 sm:py-6 rounded-xl group transition-all duration-300 text-base sm:text-lg"
             >
-              <span>{content.common.viewAll} Services</span>
+              <span>{content.common.viewAll}</span>
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2 transition-transform group-hover:translate-x-2" />
             </Button>
           </Link>

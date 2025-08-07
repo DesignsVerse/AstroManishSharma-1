@@ -154,17 +154,17 @@ export default function FAQSection() {
             transition={{ type: 'spring', stiffness: 300 }}
           >
             <Star className="w-4 h-4 sm:w-5 sm:h-5 text-[#F0DF20] mr-2" />
-            <span className="text-gray-900 font-medium text-sm sm:text-base">
+            <span className="text-gray-900  font-medium text-sm sm:text-base">
               {content.faq.title}
             </span>
           </motion.div>
           <motion.h2 
             className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 font-serif tracking-tight"
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-[#F0DF20]">
+            <span className="bg-clip-text pt-4 text-transparent bg-gradient-to-r from-gray-900 to-[#F0DF20]">
               {content.faq.title.split(' ').slice(0, -1).join(' ')}
             </span>{' '}
-            <span className="text-[#F0DF20]">{content.faq.title.split(' ').pop()}</span>
+            <span className=" text-[#F0DF20]">{content.faq.title.split(' ').pop()}</span>
           </motion.h2>
           <motion.p 
             className="text-sm sm:text-base lg:text-lg text-gray-600 max-w-xl sm:max-w-2xl mx-auto leading-relaxed"

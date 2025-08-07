@@ -11,9 +11,9 @@ import Link from 'next/link';
 
 const achievements = {
   en: [
-    { number: 15, label: "Years of Experience", suffix: "+", icon: <Award className="w-5 h-5 sm:w-6 sm:h-6" /> },
+    { number: 10, label: "Years of Experience", suffix: "+", icon: <Award className="w-5 h-5 sm:w-6 sm:h-6" /> },
     { number: 5000, label: "Happy Clients", suffix: "+", icon: <Users className="w-5 h-5 sm:w-6 sm:h-6" /> },
-    { number: 95, label: "Accuracy Rate", suffix: "%", icon: <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6" /> },
+    { number: 5, label: "Accuracy Rate", suffix: "%", icon: <CheckCircle className="w-5 h-5 sm:w-6 sm:h-6" /> },
     { number: 1000, label: "Success Stories", suffix: "+", icon: <Zap className="w-5 h-5 sm:w-6 sm:h-6" /> }
   ],
   hi: [
@@ -185,7 +185,7 @@ export default function AchievementsSection() {
         ))}
       </div>
 
-      <div className="container mx-auto px-3 sm:px-4 lg:px-6 relative z-10">
+      <div className="container  mx-auto px-3 sm:px-4 lg:px-6 relative z-10">
         <motion.div 
           className="text-center mb-10 sm:mb-12"
           initial="hidden"
@@ -204,9 +204,9 @@ export default function AchievementsSection() {
           </motion.div>
           
           <motion.h2 
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 font-serif tracking-tight"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white  mb-4 sm:mb-6 font-serif tracking-tight"
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#FFFFFF] via-[#F0DF20] to-[#F5C742]">
+            <span className="bg-clip-text pt-4 text-transparent bg-gradient-to-r from-[#FFFFFF] via-[#F0DF20] to-[#F5C742]">
               {content.achievements.title.split(' ').slice(0, -1).join(' ')}
             </span>{' '}
             <span className="text-[#F0DF20]">{content.achievements.title.split(' ').pop()}</span>
@@ -263,14 +263,6 @@ export default function AchievementsSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.2 }}
         >
-          <Link href="/about">
-            <Button 
-              className="bg-gradient-to-r from-[#F0DF20] to-[#F5C742] hover:from-[#F5C742] hover:to-[#F0DF20] text-gray-900 font-semibold text-sm sm:text-base px-6 sm:px-8 py-2 sm:py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
-            >
-              Discover More
-              <Star className="w-4 h-4 sm:w-5 sm:h-5 ml-2 group-hover:scale-110 transition-transform" />
-            </Button>
-          </Link>
           <motion.p 
             className="text-sm sm:text-base text-[#F0DF20] font-serif italic mt-4"
             initial={{ opacity: 0, y: 20 }}

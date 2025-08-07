@@ -10,7 +10,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Phone, Mail, MapPin, Clock, MessageCircle, Send, Calendar, User, Star, ChevronRight, Sparkles } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 export default function Contact() {
   const { language } = useLanguage();
@@ -18,19 +17,19 @@ export default function Contact() {
 
   const contactInfo = {
     en: {
-      title: "Divine Connection",
-      subtitle: "Align your stars with our guidance. Reach out for celestial wisdom.",
-      phone: "+91 9876543210",
-      email: "info@panditji.com",
-      address: "123 Temple Street, New Delhi, India",
+      title: "Contact Information",
+      subtitle: "Connect with us for spiritual guidance and divine wisdom.",
+      phone: "+917733994827",
+      email: "manishhsharma786@gmail.com",
+      address: "Maa Baglamukhi Temple, Nalkheda, Agar District, Madhya Pradesh",
       hours: "Monday - Saturday: 9:00 AM - 6:00 PM",
       form: {
         name: "Full Name",
         email: "Email Address",
         phone: "Phone Number",
         service: "Service Interest",
-        message: "Your Spiritual Inquiry",
-        send: "Send Cosmic Message"
+        message: "Your Inquiry",
+        send: "Send Message"
       },
       services: [
         "Vedic Astrology Reading",
@@ -44,7 +43,7 @@ export default function Contact() {
         contact: "Sacred Connection",
         location: "Temple of Wisdom",
         quick: "Instant Divine Link",
-        testimonials: "Celestial Testimonials"
+        testimonials: "Testimonials"
       },
       testimonials: [
         {
@@ -58,19 +57,19 @@ export default function Contact() {
       ]
     },
     hi: {
-      title: "दिव्य संपर्क",
-      subtitle: "हमारे मार्गदर्शन से अपने तारों को संरेखित करें। आकाशीय ज्ञान के लिए संपर्क करें।",
-      phone: "+91 9876543210",
-      email: "info@panditji.com",
-      address: "123 मंदिर स्ट्रीट, नई दिल्ली, भारत",
+      title: "संपर्क जानकारी",
+      subtitle: "आध्यात्मिक मार्गदर्शन और दिव्य ज्ञान के लिए हमसे संपर्क करें।",
+      phone: "+917733994827",
+      email: "manishhsharma786@gmail.com",
+      address: "माँ बगलामुखी मंदिर, नलखेड़ा, आगर जिला, मध्य प्रदेश",
       hours: "सोमवार - शनिवार: सुबह 9:00 बजे - शाम 6:00 बजे",
       form: {
         name: "पूरा नाम",
         email: "ईमेल पता",
         phone: "फोन नंबर",
         service: "सेवा में रुचि",
-        message: "आपकी आध्यात्मिक जिज्ञासा",
-        send: "दिव्य संदेश भेजें"
+        message: "आपकी जिज्ञासा",
+        send: "संदेश भेजें"
       },
       services: [
         "वैदिक ज्योतिष पठन",
@@ -84,7 +83,7 @@ export default function Contact() {
         contact: "पवित्र संबंध",
         location: "ज्ञान का मंदिर",
         quick: "तत्काल दिव्य लिंक",
-        testimonials: "दिव्य प्रशंसापत्र"
+        testimonials: "प्रशंसापत्र"
       },
       testimonials: [
         {
@@ -101,36 +100,6 @@ export default function Contact() {
 
   const info = contactInfo[language];
 
-  // Animation variants for staggered entry
-  const staggerContainer = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const fadeIn = (direction: string, type: string, delay: number, duration: number) => ({
-    hidden: {
-      opacity: 0,
-      y: direction === 'up' ? 20 : direction === 'down' ? -20 : 0,
-      x: direction === 'left' ? 20 : direction === 'right' ? -20 : 0
-    },
-    show: {
-      opacity: 1,
-      y: 0,
-      x: 0,
-      transition: {
-        type,
-        delay,
-        duration,
-        ease: 'easeOut'
-      }
-    }
-  });
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#f9f9f9] to-[#f1f1f1] text-[#1a1a1a] relative overflow-hidden">
       <Header />
@@ -142,251 +111,179 @@ export default function Contact() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#f9f9f9]/90 to-[#f1f1f1]/90" />
         </div>
 
-        {/* Animated Cosmic Elements */}
-        <div className="fixed inset-0 -z-40 overflow-hidden pointer-events-none">
-          {[...Array(15)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute rounded-full bg-[#F0DF20]/20"
-              style={{
-                top: `${Math.random() * 100}%`,
-                left: `${Math.random() * 100}%`,
-                width: `${1 + Math.random() * 5}px`,
-                height: `${1 + Math.random() * 5}px`
-              }}
-              animate={{
-                y: [0, -15, 0],
-                opacity: [0.2, 0.4, 0.2],
-                scale: [0.5, 0.7, 0.5]
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: Math.random() * 2
-              }}
-            />
-          ))}
-        </div>
-
         {/* Hero Section */}
-        <section className="py-16 sm:py-20 lg:py-24 relative z-10 ">
+        <section className="py-16 sm:py-20 lg:py-24 relative z-10">
           <div className="absolute inset-0 -z-10">
             <div className="absolute top-1/2 left-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle,#F0DF20_0%,transparent_70%)] opacity-10 animate-pulse" 
               style={{ transform: 'translate(-50%, -50%)' }} />
           </div>
 
           <div className="container mx-auto px-3 sm:px-4 lg:px-6">
-            <motion.div 
-              variants={staggerContainer}
-              initial="hidden"
-              animate="show"
-              className="max-w-5xl mx-auto text-center"
-            >
-              <motion.div
-                variants={fadeIn('up', 'tween', 0.2, 0.8)}
-                className="inline-flex items-center bg-white/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm mb-4 sm:mb-6"
-              >
+            <div className="max-w-5xl mx-auto text-center">
+              <div className="inline-flex items-center bg-white/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm mb-4 sm:mb-6">
                 <Sparkles className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
                 <span className="text-[#F0DF20] font-semibold text-base sm:text-lg">
                   {info.sections.contact}
                 </span>
-              </motion.div>
+              </div>
 
-              <motion.h1 
-                variants={fadeIn('up', 'tween', 0.4, 0.8)}
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20]"
-              >
+              <h1 className="text-4xl pt-4 sm:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20]">
                 {info.title}
-              </motion.h1>
+              </h1>
 
-              <motion.p 
-                variants={fadeIn('up', 'tween', 0.6, 0.8)}
-                className="text-base sm:text-lg lg:text-xl text-[#1a1a1a]/80 max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-10"
-              >
+              <p className="text-base sm:text-lg lg:text-xl text-[#1a1a1a]/80 max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-10">
                 {info.subtitle}
-              </motion.p>
+              </p>
 
-              <motion.div
-                variants={fadeIn('up', 'tween', 0.8, 0.8)}
+              <Button 
+                className="bg-gradient-to-r from-[#F0DF20] to-[#F5C742] hover:from-[#F5C742] hover:to-[#F0DF20] text-[#1a1a1a] font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group"
               >
-                <Button 
-                  className="bg-gradient-to-r from-[#F0DF20] to-[#F5C742] hover:from-[#F5C742] hover:to-[#F0DF20] text-[#1a1a1a] font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group"
-                >
-                  <div className="flex items-center">
-                    <MessageCircle className="w-5 sm:w-6 h-5 sm:h-6 mr-2 sm:mr-3 transform group-hover:translate-x-1 transition-transform" />
-                    <span>{language === 'en' ? 'Connect with Us' : 'हमसे संपर्क करें'}</span>
-                  </div>
-                </Button>
-              </motion.div>
-            </motion.div>
+                <div className="flex items-center">
+                  <MessageCircle className="w-5 sm:w-6 h-5 sm:h-6 mr-2 sm:mr-3 transform group-hover:translate-x-1 transition-transform" />
+                  <span>{language === 'en' ? 'Connect with Us' : 'हमसे संपर्क करें'}</span>
+                </div>
+              </Button>
+            </div>
           </div>
         </section>
 
         {/* Main Content */}
         <div className="relative z-10 pb-20 sm:pb-24">
-          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+          <div className="container mx-auto px- sm:px-4 lg:px-6">
             <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
               {/* Left Side - Contact Info */}
               <div className="space-y-6 sm:space-y-8">
-                <motion.div
-                  variants={fadeIn('left', 'tween', 0.2, 0.6)}
-                  initial="hidden"
-                  animate="show"
-                >
-                  <Card className="bg-white/90 backdrop-blur-sm border-[#F0DF20]/20 shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
-                    <CardHeader className="border-b border-[#F0DF20]/20">
-                      <CardTitle className="text-xl sm:text-2xl font-serif text-[#1a1a1a] flex items-center">
-                        <User className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
-                        {language === 'en' ? 'Sacred Contact' : 'पवित्र संपर्क'}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-4 sm:p-6 space-y-4 sm:space-y-6">
-                      <div className="flex items-start space-x-3 sm:space-x-4">
-                        <div className="w-10 sm:w-12 h-10 sm:h-12 bg-[#F0DF20]/10 rounded-full flex items-center justify-center border border-[#F0DF20]/20">
-                          <Phone className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20]" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium text-[#1a1a1a] mb-1 font-serif text-sm sm:text-base">
-                            {language === 'en' ? 'Divine Line' : 'दिव्य रेखा'}
-                          </h3>
-                          <p className="text-[#1a1a1a]/80 text-sm sm:text-base">{info.phone}</p>
-                        </div>
+                <Card className="bg-white/90 backdrop-blur-sm border-[#F0DF20]/20 shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
+                  <CardHeader className="border-b border-[#F0DF20]/20">
+                    <CardTitle className="text-xl sm:text-2xl font-serif text-[#1a1a1a] flex items-center">
+                      <User className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
+                      {language === 'en' ? 'Sacred Contact' : 'पवित्र संपर्क'}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+                    <div className="flex items-start space-x-3 sm:space-x-4">
+                      <div className="w-10 sm:w-12 h-10 sm:h-12 bg-[#F0DF20]/10 rounded-full flex items-center justify-center border border-[#F0DF20]/20">
+                        <Phone className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20]" />
                       </div>
-                      <div className="flex items-start space-x-3 sm:space-x-4">
-                        <div className="w-10 sm:w-12 h-10 sm:h-12 bg-[#F0DF20]/10 rounded-full flex items-center justify-center border border-[#F0DF20]/20">
-                          <Mail className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20]" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium text-[#1a1a1a] mb-1 font-serif text-sm sm:text-base">
-                            {language === 'en' ? 'Celestial Mail' : 'आकाशीय डाक'}
-                          </h3>
-                          <p className="text-[#1a1a1a]/80 text-sm sm:text-base">{info.email}</p>
-                        </div>
+                      <div>
+                        <h3 className="font-medium text-[#1a1a1a] mb-1 font-serif text-sm sm:text-base">
+                          {language === 'en' ? 'Divine Line' : 'दिव्य रेखा'}
+                        </h3>
+                        <p className="text-[#1a1a1a]/80 text-sm sm:text-base">{info.phone}</p>
                       </div>
-                      <div className="flex items-start space-x-3 sm:space-x-4">
-                        <div className="w-10 sm:w-12 h-10 sm:h-12 bg-[#F0DF20]/10 rounded-full flex items-center justify-center border border-[#F0DF20]/20">
-                          <MapPin className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20]" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium text-[#1a1a1a] mb-1 font-serif text-sm sm:text-base">
-                            {language === 'en' ? 'Temple of Wisdom' : 'ज्ञान का मंदिर'}
-                          </h3>
-                          <p className="text-[#1a1a1a]/80 text-sm sm:text-base">{info.address}</p>
-                        </div>
+                    </div>
+                    <div className="flex items-start space-x-3 sm:space-x-4">
+                      <div className="w-10 sm:w-12 h-10 sm:h-12 bg-[#F0DF20]/10 rounded-full flex items-center justify-center border border-[#F0DF20]/20">
+                        <Mail className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20]" />
                       </div>
-                      <div className="flex items-start space-x-3 sm:space-x-4">
-                        <div className="w-10 sm:w-12 h-10 sm:h-12 bg-[#F0DF20]/10 rounded-full flex items-center justify-center border border-[#F0DF20]/20">
-                          <Clock className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20]" />
-                        </div>
-                        <div>
-                          <h3 className="font-medium text-[#1a1a1a] mb-1 font-serif text-sm sm:text-base">
-                            {language === 'en' ? 'Cosmic Hours' : 'ब्रह्मांडीय समय'}
-                          </h3>
-                          <p className="text-[#1a1a1a]/80 text-sm sm:text-base">{info.hours}</p>
-                        </div>
+                      <div>
+                        <h3 className="font-medium text-[#1a1a1a] mb-1 font-serif text-sm sm:text-base">
+                          {language === 'en' ? 'Celestial Mail' : 'आकाशीय डाक'}
+                        </h3>
+                        <p className="text-[#1a1a1a]/80 text-sm sm:text-base">{info.email}</p>
                       </div>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                    </div>
+                    <div className="flex items-start space-x-3 sm:space-x-4">
+                      <div className="w-10 sm:w-12 h-10 sm:h-12 bg-[#F0DF20]/10 rounded-full flex items-center justify-center border border-[#F0DF20]/20">
+                        <MapPin className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20]" />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-[#1a1a1a] mb-1 font-serif text-sm sm:text-base">
+                          {language === 'en' ? 'Temple of Wisdom' : 'ज्ञान का मंदिर'}
+                        </h3>
+                        <p className="text-[#1a1a1a]/80 text-sm sm:text-base">{info.address}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start space-x-3 sm:space-x-4">
+                      <div className="w-10 sm:w-12 h-10 sm:h-12 bg-[#F0DF20]/10 rounded-full flex items-center justify-center border border-[#F0DF20]/20">
+                        <Clock className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20]" />
+                      </div>
+                      <div>
+                        <h3 className="font-medium text-[#1a1a1a] mb-1 font-serif text-sm sm:text-base">
+                          {language === 'en' ? 'Cosmic Hours' : 'ब्रह्मांडीय समय'}
+                        </h3>
+                        <p className="text-[#1a1a1a]/80 text-sm sm:text-base">{info.hours}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
 
-                <motion.div
-                  variants={fadeIn('left', 'tween', 0.4, 0.6)}
-                  initial="hidden"
-                  animate="show"
-                >
-                  <Card className="bg-white/90 backdrop-blur-sm border-[#F0DF20]/20 shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
-                    <CardHeader className="border-b border-[#F0DF20]/20">
-                      <CardTitle className="text-xl sm:text-2xl font-serif text-[#1a1a1a] flex items-center">
-                        <MessageCircle className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
-                        {info.sections.quick}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-4 sm:p-6 space-y-4">
-                      <Button 
-                        className="w-full bg-gradient-to-r from-[#F0DF20] to-[#F5C742] hover:from-[#F5C742] hover:to-[#F0DF20] text-[#1a1a1a] font-semibold py-4 sm:py-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group"
-                      >
-                        <div className="flex items-center justify-between w-full">
-                          <div className="flex items-center">
-                            <MessageCircle className="w-4 sm:w-5 h-4 sm:h-5 mr-2 sm:mr-3" />
-                            <span className="text-sm sm:text-base">{language === 'en' ? 'WhatsApp Divination' : 'व्हाट्सएप ज्योतिष'}</span>
-                          </div>
-                          <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5 transform group-hover:translate-x-1 transition-transform" />
+                <Card className="bg-white/90 backdrop-blur-sm border-[#F0DF20]/20 shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
+                  <CardHeader className="border-b border-[#F0DF20]/20">
+                    <CardTitle className="text-xl sm:text-2xl font-serif text-[#1a1a1a] flex items-center">
+                      <MessageCircle className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
+                      {info.sections.quick}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-4 sm:p-6 space-y-4">
+                    <Button 
+                      className="w-full bg-gradient-to-r from-[#F0DF20] to-[#F5C742] hover:from-[#F5C742] hover:to-[#F0DF20] text-[#1a1a1a] font-semibold py-4 sm:py-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group"
+                    >
+                      <div className="flex items-center justify-between w-full">
+                        <div className="flex items-center">
+                          <MessageCircle className="w-4 sm:w-5 h-4 sm:h-5 mr-2 sm:mr-3" />
+                          <span className="text-sm sm:text-base">{language === 'en' ? 'WhatsApp Divination' : 'व्हाट्सएप ज्योतिष'}</span>
                         </div>
-                      </Button>
-                      <Button 
-                        className="w-full bg-white/90 backdrop-blur-sm border border-[#F0DF20]/20 hover:bg-[#F0DF20]/10 text-[#1a1a1a] font-semibold py-4 sm:py-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group"
-                      >
-                        <div className="flex items-center justify-between w-full">
-                          <div className="flex items-center">
-                            <Phone className="w-4 sm:w-5 h-4 sm:h-5 mr-2 sm:mr-3 text-[#F0DF20]" />
-                            <span className="text-sm sm:text-base">{language === 'en' ? 'Instant Cosmic Call' : 'तत्काल दिव्य कॉल'}</span>
-                          </div>
-                          <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5 transform group-hover:translate-x-1 transition-transform" />
+                        <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5 transform group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </Button>
+                    <Button 
+                      className="w-full bg-white/90 backdrop-blur-sm border border-[#F0DF20]/20 hover:bg-[#F0DF20]/10 text-[#1a1a1a] font-semibold py-4 sm:py-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group"
+                    >
+                      <div className="flex items-center justify-between w-full">
+                        <div className="flex items-center">
+                          <Phone className="w-4 sm:w-5 h-4 sm:h-5 mr-2 sm:mr-3 text-[#F0DF20]" />
+                          <span className="text-sm sm:text-base">{language === 'en' ? 'Instant Cosmic Call' : 'तत्काल दिव्य कॉल'}</span>
                         </div>
-                      </Button>
-                      <Button 
-                        className="w-full bg-white/90 backdrop-blur-sm border border-[#F0DF20]/20 hover:bg-[#F0DF20]/10 text-[#1a1a1a] font-semibold py-4 sm:py-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group"
-                      >
-                        <div className="flex items-center justify-between w-full">
-                          <div className="flex items-center">
-                            <Calendar className="w-4 sm:w-5 h-4 sm:h-5 mr-2 sm:mr-3 text-[#F0DF20]" />
-                            <span className="text-sm sm:text-base">{language === 'en' ? 'Book Sacred Session' : 'पवित्र सत्र बुक करें'}</span>
-                          </div>
-                          <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5 transform group-hover:translate-x-1 transition-transform" />
+                        <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5 transform group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </Button>
+                    <Button 
+                      className="w-full bg-white/90 backdrop-blur-sm border border-[#F0DF20]/20 hover:bg-[#F0DF20]/10 text-[#1a1a1a] font-semibold py-4 sm:py-6 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 group"
+                    >
+                      <div className="flex items-center justify-between w-full">
+                        <div className="flex items-center">
+                          <Calendar className="w-4 sm:w-5 h-4 sm:h-5 mr-2 sm:mr-3 text-[#F0DF20]" />
+                          <span className="text-sm sm:text-base">{language === 'en' ? 'Book Sacred Session' : 'पवित्र सत्र बुक करें'}</span>
                         </div>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                        <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5 transform group-hover:translate-x-1 transition-transform" />
+                      </div>
+                    </Button>
+                  </CardContent>
+                </Card>
 
-                <motion.div
-                  variants={fadeIn('left', 'tween', 0.6, 0.6)}
-                  initial="hidden"
-                  animate="show"
-                >
-                  <Card className="bg-white/90 backdrop-blur-sm border-[#F0DF20]/20 shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
-                    <CardHeader className="border-b border-[#F0DF20]/20">
-                      <CardTitle className="text-xl sm:text-2xl font-serif text-[#1a1a1a] flex items-center">
-                        <Star className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
-                        {info.sections.testimonials}
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-4 sm:p-6 space-y-4 sm:space-y-6">
-                      {info.testimonials.map((testimonial, index) => (
-                        <motion.div 
-                          key={index} 
-                          className="relative"
-                          variants={fadeIn('up', 'tween', 0.2 + index * 0.2, 0.6)}
-                        >
-                          <div className="absolute -top-3 -left-3 text-[#F0DF20]/30 text-3xl sm:text-4xl">❝</div>
-                          <div className="bg-[#f9f9f9] p-4 sm:p-5 rounded-xl border border-[#F0DF20]/20">
-                            <p className="text-[#1a1a1a]/90 italic text-sm sm:text-base mb-2 sm:mb-3">"{testimonial.quote}"</p>
-                            <p className="text-[#F0DF20] font-medium text-sm sm:text-base">— {testimonial.author}</p>
-                          </div>
-                        </motion.div>
-                      ))}
-                    </CardContent>
-                  </Card>
-                </motion.div>
+                <Card className="bg-white/90 backdrop-blur-sm border-[#F0DF20]/20 shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl">
+                  <CardHeader className="border-b border-[#F0DF20]/20">
+                    <CardTitle className="text-xl sm:text-2xl font-serif text-[#1a1a1a] flex items-center">
+                      <Star className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
+                      {info.sections.testimonials}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+                    {info.testimonials.map((testimonial, index) => (
+                      <div key={index} className="relative">
+                        <div className="absolute -top-3 -left-3 text-[#F0DF20]/30 text-3xl sm:text-4xl">❝</div>
+                        <div className="bg-[#f9f9f9] p-4 sm:p-5 rounded-xl border border-[#F0DF20]/20">
+                          <p className="text-[#1a1a1a]/90 italic text-sm sm:text-base mb-2 sm:mb-3">"{testimonial.quote}"</p>
+                          <p className="text-[#F0DF20] font-medium text-sm sm:text-base">— {testimonial.author}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </CardContent>
+                </Card>
               </div>
 
               {/* Middle - Form */}
-              <motion.div
-                variants={fadeIn('up', 'tween', 0.3, 0.6)}
-                initial="hidden"
-                animate="show"
-                className="lg:col-span-2"
-              >
+              <div className="lg:col-span-2">
                 <Card className="bg-white/90 backdrop-blur-sm border-[#F0DF20]/20 shadow-xl hover:shadow-2xl transition-all duration-300 rounded-2xl">
                   <CardHeader className="border-b border-[#F0DF20]/20">
                     <CardTitle className="text-2xl sm:text-3xl font-serif text-[#1a1a1a]">
-                      {language === 'en' ? 'Cosmic Inquiry Form' : 'ब्रह्मांडीय जिज्ञासा फॉर्म'}
+                      {language === 'en' ? 'Inquiry Form' : 'जिज्ञासा फॉर्म'}
                     </CardTitle>
                     <CardDescription className="text-[#1a1a1a]/70 text-sm sm:text-base">
                       {language === 'en' ? 
-                        'Complete this sacred form to receive divine guidance within 24 hours.' :
-                        '24 घंटों के भीतर दिव्य मार्गदर्शन प्राप्त करने के लिए इस पवित्र फॉर्म को पूरा करें।'
+                        'Complete this form to receive guidance within 24 hours.' :
+                        '24 घंटों के भीतर मार्गदर्शन प्राप्त करने के लिए इस फॉर्म को पूरा करें।'
                       }
                     </CardDescription>
                   </CardHeader>
@@ -429,7 +326,7 @@ export default function Contact() {
                             {info.form.service}
                           </label>
                           <select className="w-full p-3 bg-white/90 border border-[#F0DF20]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F0DF20] text-[#1a1a1a] text-sm sm:text-base">
-                            <option value="">{language === 'en' ? 'Select celestial service' : 'दिव्य सेवा चुनें'}</option>
+                            <option value="">{language === 'en' ? 'Select service' : 'सेवा चुनें'}</option>
                             {info.services.map((service, index) => (
                               <option key={index} value={service}>{service}</option>
                             ))}
@@ -442,8 +339,8 @@ export default function Contact() {
                         </label>
                         <Textarea 
                           placeholder={language === 'en' ? 
-                            "Describe your spiritual needs and cosmic questions..." : 
-                            "अपनी आध्यात्मिक आवश्यकताओं और ब्रह्मांडीय प्रश्नों का वर्णन करें..."
+                            "Describe your needs and questions..." : 
+                            "अपनी आवश्यकताओं और प्रश्नों का वर्णन करें..."
                           } 
                           className="w-full h-32 sm:h-40 bg-white/90 border-[#F0DF20]/20 focus:ring-[#F0DF20] focus:border-[#F0DF20] text-[#1a1a1a] placeholder-[#1a1a1a]/50 rounded-xl resize-none" 
                         />
@@ -462,64 +359,45 @@ export default function Contact() {
                     </form>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Map Section */}
-        <section className="py-16 sm:py-20 bg-gradient-to-b from-[#f1f1f1] to-[#f9f9f9]">
-          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
-            <motion.div 
-              variants={fadeIn('up', 'tween', 0.2, 0.8)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="text-center mb-12 sm:mb-16"
-            >
-              <div className="inline-flex items-center bg-[#F0DF20]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm mb-4 sm:mb-6">
-                <MapPin className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
-                <span className="text-[#F0DF20] font-semibold text-base sm:text-lg">{info.sections.location}</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20]">
-                {language === 'en' ? 'Temple of Cosmic Wisdom' : 'ब्रह्मांडीय ज्ञान का मंदिर'}
-              </h2>
-              <p className="text-base sm:text-lg text-[#1a1a1a]/80 max-w-3xl mx-auto leading-relaxed">
-                {language === 'en' ? 
-                  'Our sacred space is designed for spiritual transformation and cosmic alignment. Visit us for profound consultations.' :
-                  'हमारा पवित्र स्थान आध्यात्मिक परिवर्तन और ब्रह्मांडीय संरेखण के लिए डिज़ाइन किया गया है। गहन परामर्श के लिए हमसे मिलें।'
-                }
-              </p>
-            </motion.div>
-            <motion.div
-              variants={fadeIn('up', 'tween', 0.4, 0.8)}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              className="relative bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-1 max-w-5xl mx-auto border border-[#F0DF20]/20 overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-[url('/assets/cosmic-pattern.svg')] bg-repeat opacity-10" />
-              <div className="relative bg-white rounded-xl h-80 sm:h-96 flex items-center justify-center">
-                <div className="text-center p-4 sm:p-8">
-                  <div className="w-16 sm:w-20 h-16 sm:h-20 bg-[#F0DF20]/10 rounded-full flex items-center justify-center border border-[#F0DF20]/20 mx-auto mb-4 sm:mb-6">
-                    <MapPin className="w-8 sm:w-10 h-8 sm:h-10 text-[#F0DF20]" />
-                  </div>
-                  <h3 className="text-xl sm:text-2xl font-serif text-[#1a1a1a] mb-2 sm:mb-3">
-                    {language === 'en' ? 'Sacred Location' : 'पवित्र स्थान'}
-                  </h3>
-                  <p className="text-[#1a1a1a]/80 text-sm sm:text-base mb-4 sm:mb-6 max-w-md mx-auto">
-                    {info.address}
-                  </p>
-                  <Button 
-                    className="bg-gradient-to-r from-[#F0DF20] to-[#F5C742] hover:from-[#F5C742] hover:to-[#F0DF20] text-[#1a1a1a] font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-xl shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-                  >
-                    {language === 'en' ? 'Get Directions' : 'दिशा-निर्देश प्राप्त करें'}
-                  </Button>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
+        <section className=" sm:py-20 bg-gradient-to-b from-[#f1f1f1] to-[#f9f9f9]">
+  <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+    <div className="text-center mb-12 sm:mb-16">
+      <div className="inline-flex items-center bg-[#F0DF20]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm mb-4 sm:mb-6">
+        <MapPin className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
+        <span className="text-[#F0DF20] font-semibold text-base sm:text-lg">{info.sections.location}</span>
+      </div>
+      <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20]">
+        {language === 'en' ? 'Temple of Wisdom' : 'ज्ञान का मंदिर'}
+      </h2>
+      <p className="text-base sm:text-lg text-[#1a1a1a]/80 max-w-3xl mx-auto leading-relaxed">
+        {language === 'en' ? 
+          'Visit our sacred space for spiritual guidance and consultations.' :
+          'आध्यात्मिक मार्गदर्शन और परामर्श के लिए हमारे पवित्र स्थान पर आएं।'
+        }
+      </p>
+    </div>
+    <div className="relative bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl p-1 max-w-5xl mx-auto border border-[#F0DF20]/20 overflow-hidden">
+      <div className="absolute inset-0 bg-[url('/assets/cosmic-pattern.svg')] bg-repeat opacity-10" />
+      <div className="relative rounded-xl overflow-hidden">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7137.157231461238!2d76.22609229385894!3d23.841389699999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3964b97a0576ae97%3A0x45323f30be84261c!2sBaglamukhi%20Mandir%20Nalkheda!5e1!3m2!1sen!2sin!4v1754543638834!5m2!1sen!2sin" 
+          width="100%" 
+          height="450" 
+          style={{ border: 0 }} 
+          allowFullScreen 
+          loading="lazy" 
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
       </main>
 
       <Footer />

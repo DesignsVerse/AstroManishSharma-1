@@ -81,7 +81,7 @@ export default function ConsultationBanner() {
             className="lg:w-3/5 p-4 sm:p-6 lg:p-8"
           >
             <motion.h3 
-              className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 sm:mb-4 font-serif bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-[#F0DF20]"
+              className="text-xl pt-4 sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 sm:mb-4 font-serif bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-[#F0DF20]"
             >
               {content.title}
             </motion.h3>

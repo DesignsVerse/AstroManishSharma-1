@@ -168,7 +168,7 @@ export default function TestimonialsSection() {
             whileHover={{ scale: 1.05 }}
           >
             <Sparkles className="w-5 h-5 text-[#F0DF20] mr-2" />
-            <span className="text-sm font-medium text-white tracking-wider">
+            <span className="text-sm  font-medium text-white tracking-wider">
               {content.testimonials.badgeText}
             </span>
           </motion.div>
@@ -179,7 +179,7 @@ export default function TestimonialsSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#FFFFFF] via-[#F0DF20] to-[#FFFFFF]">
+            <span className="bg-clip-text pt-4 text-transparent bg-gradient-to-r from-[#FFFFFF] via-[#F0DF20] to-[#FFFFFF]">
               {content.testimonials.title.split(' ').slice(0, -1).join(' ')}
             </span>{' '}
             <span className="text-[#F0DF20]">{content.testimonials.title.split(' ').pop()}</span>
