@@ -4,8 +4,10 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { globalContent as enContent } from '@/data/globalContent/en';
 import { globalContent as hiContent } from '@/data/globalContent/hi';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Star, Quote, Sparkles } from 'lucide-react';
+import { Star, Quote, Sparkles, ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 const testimonials = {
   en: [
@@ -120,7 +122,7 @@ export default function TestimonialsSection() {
   // Detect mobile view
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024); // lg breakpoint
+      setIsMobile(window.innerWidth < 640); // sm breakpoint
     };
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -131,7 +133,7 @@ export default function TestimonialsSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveIndex((prevIndex) => {
-        const cardsToShow = isMobile ? 1 : 3;
+        const cardsToShow = isMobile ? 1 : 3; // 1 card on mobile, 3 on larger screens
         return (prevIndex + cardsToShow) % testimonialData.length;
       });
     }, 5000); // Change every 5 seconds
@@ -140,7 +142,7 @@ export default function TestimonialsSection() {
 
   // Calculate visible testimonials
   const getVisibleTestimonials = () => {
-    const cardsToShow = isMobile ? 1 : 3;
+    const cardsToShow = isMobile ? 1 : 3; // Show 1 card on mobile, 3 on larger screens
     const visible = [];
     for (let i = 0; i < cardsToShow; i++) {
       const index = (activeIndex + i) % testimonialData.length;
@@ -149,25 +151,58 @@ export default function TestimonialsSection() {
     return visible;
   };
 
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <section className="relative py-20 bg-gradient-to-b from-[#0F0F12] to-[#1A1A24] overflow-hidden">
+    <section className="relative py-16 sm:py-20 bg-gradient-to-b from-[#4B2E2E] to-[#800000] overflow-hidden">
       {/* Cosmic Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         {[...Array(30)].map((_, i) => (
-          <div 
+          <motion.div 
             key={i}
-            className="absolute bg-white rounded-full"
+            className="absolute bg-[#F7CAC9] rounded-full"
             style={{
               width: `${Math.random() * 3}px`,
               height: `${Math.random() * 3}px`,
               top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              opacity: Math.random() * 0.8 + 0.2
+              left: `${Math.random() * 100}%`
+            }}
+            animate={{
+              opacity: [0.2, 0.8, 0.2],
+              scale: [1, 1.2, 1]
+            }}
+            transition={{
+              duration: 3 + Math.random() * 3,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: Math.random() * 2
             }}
           />
         ))}
         <motion.div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#F0DF20]/10 blur-[100px]"
+          className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#E0116F]/10 blur-[100px]"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.1, 0.15, 0.1]
@@ -180,49 +215,43 @@ export default function TestimonialsSection() {
         />
       </div>
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
         <motion.div 
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          className="text-center mb-12 sm:mb-16"
+          initial="hidden"
+          animate="visible"
+          variants={containerVariants}
         >
           <motion.div 
-            className="inline-flex items-center bg-[#FFFFFF]/10 backdrop-blur-sm px-5 py-2 rounded-full border border-[#F0DF20]/30 mb-6"
+            className="inline-flex items-center bg-[#E0116F]/10 backdrop-blur-sm px-5 py-2 rounded-full border border-[#E0116F]/20 mb-6"
             whileHover={{ scale: 1.05 }}
-          >
-            <Sparkles className="w-5 h-5 text-[#F0DF20] mr-2" />
-            <span className="text-sm font-medium text-white tracking-wider">
-              {content.testimonials.badgeText}
+                      >
+            <Sparkles className="w-5 h-5 text-[#E75480] mr-2" />
+            <span className="text-sm font-medium text-[#F7CAC9] tracking-wider">
+              {content.testimonials?.badgeText || "Client Stories"}
             </span>
           </motion.div>
           
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold text-white mb-6 font-serif tracking-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <span className="bg-clip-text pt-4 text-transparent bg-gradient-to-r from-[#FFFFFF] via-[#F0DF20] to-[#FFFFFF]">
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#F7CAC9] mb-4 font-serif tracking-tight"
+                      >
+            <span className="bg-clip-text pt-4 text-transparent bg-gradient-to-r from-[#F7CAC9] to-[#E0116F]">
               {content.testimonials.title.split(' ').slice(0, -1).join(' ')}
             </span>{' '}
-            <span className="text-[#F0DF20]">{content.testimonials.title.split(' ').pop()}</span>
+            <span className="text-[#E75480]">{content.testimonials.title.split(' ').pop()}</span>
           </motion.h2>
           
           <motion.p 
-            className="text-lg text-[#FFFFFF]/80 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
+            className="text-base sm:text-lg text-[#FFD1DC] max-w-3xl mx-auto leading-relaxed"
+                      >
             {content.testimonials.subtitle}
           </motion.p>
         </motion.div>
 
         {/* Testimonials Carousel */}
         <div className="relative">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 snap-x snap-mandatory overflow-x-auto scrollbar-hide">
             <AnimatePresence mode="wait">
               {getVisibleTestimonials().map((testimonial, index) => (
                 <motion.div
@@ -231,13 +260,13 @@ export default function TestimonialsSection() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -50 }}
                   transition={{ duration: 0.6 }}
-                  className="w-full"
-                >
-                  <div className="relative h-full bg-[#FFFFFF]/5 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg border border-[#FFFFFF]/10 hover:border-[#F0DF20]/30 transition-all duration-300 p-6">
-                    <Quote className="absolute top-6 right-6 w-8 h-8 text-[#F0DF20]/20" />
+                  className="w-full snap-center"
+                                  >
+                  <div className="relative h-full bg-[#F7CAC9]/5 backdrop-blur-sm rounded-2xl overflow-hidden shadow-lg border border-[#E0116F]/10 hover:border-[#E0116F]/30 transition-all duration-300 p-6">
+                    <Quote className="absolute top-6 right-6 w-8 h-8 text-[#E0116F]/20" />
                     <div className="relative z-10 h-full flex flex-col">
                       <div className="flex-grow mb-6">
-                        <p className="text-white/90 text-lg leading-relaxed mb-6">
+                        <p className="text-[#FFD1DC] text-base sm:text-lg leading-relaxed mb-6">
                           "{testimonial.text}"
                         </p>
                       </div>
@@ -246,27 +275,44 @@ export default function TestimonialsSection() {
                           <img
                             src={testimonial.image}
                             alt={testimonial.name}
-                            className="w-12 h-12 rounded-full object-cover mr-4 border-2 border-[#F0DF20]"
+                            className="w-12 h-12 rounded-full object-cover mr-4 border-2 border-[#E0116F]"
                           />
                           <div>
-                            <h4 className="font-semibold text-white">{testimonial.name}</h4>
-                            <p className="text-[#FFFFFF]/60 text-sm">{testimonial.location}</p>
+                            <h4 className="font-semibold text-[#F7CAC9]">{testimonial.name}</h4>
+                            <p className="text-[#FFD1DC]/60 text-sm">{testimonial.location}</p>
                           </div>
                         </div>
                         <div className="flex">
                           {[...Array(testimonial.rating)].map((_, i) => (
-                            <Star key={i} className="w-4 h-4 text-[#F0DF20] fill-current" />
+                            <Star key={i} className="w-4 h-4 text-[#E75480] fill-current" />
                           ))}
                         </div>
                       </div>
                     </div>
-                    <div className="absolute inset-0 border-2 border-[#F0DF20] rounded-xl opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                    <div className="absolute inset-0 border-2 border-[#E0116F] rounded-2xl opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                   </div>
                 </motion.div>
               ))}
             </AnimatePresence>
           </div>
         </div>
+
+        {/* View More Button */}
+        <motion.div 
+          className="text-center mt-10 sm:mt-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+                  >
+          <Link href="/testimonials">
+            <Button 
+              className="bg-[#E75480] hover:bg-[#FF00FF] text-white font-semibold text-base px-8 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 group"
+            >
+              View More Testimonials
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );

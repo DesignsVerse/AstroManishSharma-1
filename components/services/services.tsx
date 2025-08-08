@@ -12,8 +12,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Sparkles, Clock, Star, ChevronRight, Zap, Globe, Search, ChevronDown, Sun, Moon, Phone, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
-// Define the Service type to fix TypeScript errors
 interface Service {
   id: string;
   title: string;
@@ -33,18 +33,10 @@ export default function Services() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
-  // Debug logs to verify language and data
-  useEffect(() => {
-    console.log('Language:', language);
-    console.log('Content:', content);
-    console.log('Services:', services);
-  }, [language, content, services]);
-
   const categories = language === 'en'
     ? ['All', 'Astrology', 'Vastu', 'Numerology', 'Palmistry', 'Gemstone Therapy', 'Puja']
     : ['सभी', 'ज्योतिष', 'वास्तु', 'अंक ज्योतिष', 'हस्तरेखा', 'रत्न चिकित्सा', 'पूजा'];
 
-  // Define category mapping with explicit type
   const categoryMapping: Record<string, string> = {
     All: 'All',
     सभी: 'All',
@@ -79,133 +71,183 @@ export default function Services() {
   );
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#f9f9f9] to-[#f1f1f1] text-[#1a1a1a] relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-b from-[#F7CAC9] to-[#FFD1DC] text-[#4B2E2E] relative overflow-hidden">
       {/* Cosmic Background */}
       <div className="fixed inset-0 -z-50">
-        <div className="absolute inset-0 bg-[url('/assets/cosmic-pattern.svg')] bg-repeat opacity-10" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#f9f9f9]/90 to-[#f1f1f1]/90" />
+        <div className="absolute inset-0 bg-[url('/assets/cosmic-pattern.svg')] bg-repeat opacity-5" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F7CAC9]/95 to-[#FFD1DC]/95" />
       </div>
 
-      <Header />
 
-      <main className="pt-10 sm:pt-16">
+      <main className="pt-20 sm:pt-24">
         {/* Hero Section with Search Bar */}
         <section className="relative py-16 sm:py-20 overflow-hidden">
           <div className="absolute inset-0 -z-10">
-            <div className="absolute top-1/2 left-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle,#F0DF20_0%,transparent_70%)] opacity-10 animate-pulse"
+            <div className="absolute top-1/2 left-1/2 w-[150%] h-[150%] bg-[radial-gradient(circle,#FFD700_0%,transparent_70%)] opacity-10 animate-pulse"
               style={{ transform: 'translate(-50%, -50%)' }} />
           </div>
 
-          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto text-center">
-              <div className="inline-flex items-center bg-[#F0DF20]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 mb-4 sm:mb-6 shadow-sm">
-                <Sparkles className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
-                <span className="text-[#F0DF20] font-semibold text-base sm:text-lg">{content.services.title}</span>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="inline-flex items-center bg-[#FFD700]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#FFD700]/30 mb-6 sm:mb-8 shadow-sm"
+              >
+                <Sparkles className="w-5 sm:w-6 h-5 sm:h-6 text-[#FFD700] mr-2 sm:mr-3" />
+                <span className="text-[#4B2E2E] font-semibold text-base sm:text-lg">{content.services.title}</span>
+              </motion.div>
 
-              <h1 className="pt-4 text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20]">
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="pt-4 text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 sm:mb-8 font-serif text-[#4B2E2E]"
+              >
                 {content.services.headline}
-              </h1>
+              </motion.h1>
 
-              <p className="text-base sm:text-lg text-[#1a1a1a]/80 max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-10">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-base sm:text-lg text-[#800000] max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-10"
+              >
                 {content.services.subtitle}
-              </p>
+              </motion.p>
 
               {/* Search Bar */}
-              <div className="relative max-w-md mx-auto mb-8 sm:mb-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="relative max-w-md mx-auto mb-8 sm:mb-10"
+              >
                 <input
                   type="text"
                   placeholder={language === 'en' ? 'Search services...' : 'सेवाएँ खोजें...'}
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full py-2 sm:py-3 px-4 sm:px-5 text-sm sm:text-base bg-white/90 backdrop-blur-sm border border-[#F0DF20]/20 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#F0DF20] transition-all duration-300"
+                  className="w-full py-3 px-5 text-base bg-white/95 backdrop-blur-sm border border-[#FFD700]/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#FFD700] transition-all duration-300"
                 />
-                <Search className="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20]" />
-              </div>
+                <Search className="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-[#4B2E2E]" />
+              </motion.div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center"
+              >
                 <Button
-                  className="bg-gradient-to-r from-[#F0DF20] to-[#F5C742] hover:from-[#F5C742] hover:to-[#F0DF20] text-[#1a1a1a] font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+                  className="bg-[#E75480] hover:bg-[#FF00FF] text-white font-semibold px-6 sm:px-8 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
                 >
-                  <Zap className="w-5 sm:w-6 h-5 sm:h-6 mr-2 sm:mr-3" />
+                  <Zap className="w-5 h-5 mr-2" />
                   {content.common.getConsultation}
                 </Button>
 
                 <Link href="/contact">
                   <Button
                     variant="outline"
-                    className="border-2 border-[#F0DF20] text-[#F0DF20] hover:bg-[#F0DF20]/10 font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-xl backdrop-blur-sm"
+                    className="border-2 border-[#FFD700] text-[#4B2E2E] hover:bg-[#FFD700]/10 font-semibold px-6 sm:px-8 py-3 rounded-xl backdrop-blur-sm"
                   >
                     {content.common.contactUs}
                   </Button>
                 </Link>
-              </div>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+        {/* Category Filter */}
+        <section className="relative py-8 bg-gradient-to-b from-[#F7CAC9] to-[#FFD1DC]">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-wrap gap-2 justify-center">
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? 'default' : 'outline'}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+                    selectedCategory === category
+                      ? 'bg-[#E75480] text-white hover:bg-[#FF00FF]'
+                      : 'border-[#FFD700] text-[#4B2E2E] hover:bg-[#FFD700]/10'
+                  }`}
+                  onClick={() => setSelectedCategory(category)}
+                >
+                  {category}
+                </Button>
+              ))}
             </div>
           </div>
         </section>
 
         {/* Services Grid */}
-        <section className="relative py- sm:py-0 bg-gradient-to-b from-[#f9f9f9] to-[#f1f1f1]">
-          <div className="absolute -top-16 left-0 w-48 sm:w-64 h-48 sm:h-64 bg-[#F0DF20]/5 rounded-full blur-3xl"></div>
-          <div className="absolute -bottom-16 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-[#F5C742]/5 rounded-full blur-3xl"></div>
+        <section className="relative py-12 sm:py-16 bg-gradient-to-b from-[#F7CAC9] to-[#FFD1DC]">
+          <div className="absolute -top-16 left-0 w-48 sm:w-64 h-48 sm:h-64 bg-[#FFD700]/10 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-16 right-0 w-48 sm:w-64 h-48 sm:h-64 bg-[#E0116F]/10 rounded-full blur-3xl"></div>
 
-          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {filteredServices.length > 0 ? (
                 filteredServices.map((service) => (
                   <Link href={`/services/${service.id}`} key={service.id}>
-                    <Card className="relative overflow-hidden h-full bg-white/90 backdrop-blur-sm border border-[#F0DF20]/20 hover:border-[#F0DF20]/40 shadow-md hover:shadow-lg transition-all duration-300 rounded-2xl cursor-pointer group">
-                      <div className="absolute inset-0 bg-gradient-to-br from-[#F0DF20]/10 to-[#F5C742]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute top-3 sm:top-4 right-3 sm:right-4 text-[#F0DF20]/30 text-2xl sm:text-3xl group-hover:text-[#F0DF20]/70">🕉</div>
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5 }}
+                    >
+                      <Card className="relative overflow-hidden h-full bg-white/95 backdrop-blur-sm border border-[#FFD700]/30 hover:border-[#FFD700]/50 shadow-lg hover:shadow-xl transition-all duration-300 rounded-2xl cursor-pointer group">
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#FFD700]/10 to-[#E0116F]/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        <div className="absolute top-4 right-4 text-[#FFD700]/40 text-3xl group-hover:text-[#FFD700]/80">🕉</div>
 
-                      <div className="relative overflow-hidden rounded-t-2xl">
-                        <img
-                          src={service.image}
-                          alt={service.title}
-                          className="w-full h-100 sm:h-56 object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </div>
-
-                      <CardHeader className="pb-2">
-                        <CardTitle className="text-lg sm:text-xl lg:text-2xl font-semibold font-serif group-hover:text-[#F0DF20] transition-colors duration-300">
-                          {service.title}
-                        </CardTitle>
-                        <CardDescription className="text-sm sm:text-base text-[#1a1a1a]/80">
-                          {service.description}
-                        </CardDescription>
-                      </CardHeader>
-
-                      <CardContent className="pt-0 flex flex-col justify-between h-[calc(100%-14rem)]">
-                       
-
-                        <div className="sticky bottom-0 mt-4 flex justify-between gap-2">
-                          <Button
-                            size="sm"
-                            className="bg-green-500 hover:bg-green-600 text-white font-medium flex-1"
-                            asChild
-                          >
-                            <a href={`https://wa.me/your-whatsapp-number?text=Interested%20in%20${encodeURIComponent(service.title)}`}>
-                              <MessageSquare className="w-4 sm:w-5 h-4 sm:h-5 mr-2" />
-                              {language === 'en' ? 'WhatsApp Now' : 'व्हाट्सएप करें'}
-                            </a>
-                          </Button>
-                          <Button
-                            size="sm"
-                            className="bg-[#F0DC23] text-white font-medium flex-1"
-                            asChild
-                          >
-                            <a href="tel:+your-phone-number">
-                              <Phone className="w-4 sm:w-5 h-4 sm:h-5 mr-2" />
-                              {language === 'en' ? 'Call Now' : 'कॉल करें'}
-                            </a>
-                          </Button>
+                        <div className="relative overflow-hidden rounded-t-2xl">
+                          <img
+                            src={service.image}
+                            alt={service.title}
+                            className="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110"
+                          />
                         </div>
-                      </CardContent>
-                    </Card>
+
+                        <CardHeader className="pb-2">
+                          <CardTitle className="text-xl font-semibold font-serif group-hover:text-[#E0116F] transition-colors duration-300">
+                            {service.title}
+                          </CardTitle>
+                          <CardDescription className="text-base text-[#800000]">
+                            {service.description}
+                          </CardDescription>
+                        </CardHeader>
+
+                        <CardContent className="pt-0 flex flex-col justify-between h-[calc(100%-14rem)]">
+                          <div className="sticky bottom-0 mt-4 flex justify-between gap-3">
+                            <Button
+                              size="sm"
+                              className="bg-[#E75480] hover:bg-[#FF00FF] text-white font-medium flex-1 rounded-full"
+                              asChild
+                            >
+                              <a href={`https://wa.me/your-whatsapp-number?text=Interested%20in%20${encodeURIComponent(service.title)}`}>
+                                <MessageSquare className="w-5 h-5 mr-2" />
+                                {language === 'en' ? 'WhatsApp Now' : 'व्हाट्सएप करें'}
+                              </a>
+                            </Button>
+                            <Button
+                              size="sm"
+                              className="bg-[#E0116F] hover:bg-[#FF00FF] text-white font-medium flex-1 rounded-full"
+                              asChild
+                            >
+                              <a href="tel:+your-phone-number">
+                                <Phone className="w-5 h-5 mr-2" />
+                                {language === 'en' ? 'Call Now' : 'कॉल करें'}
+                              </a>
+                            </Button>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </motion.div>
                   </Link>
                 ))
               ) : (
-                <p className="text-center text-[#1a1a1a]/80 text-base sm:text-lg col-span-full">
+                <p className="text-center text-[#800000] text-lg col-span-full">
                   {language === 'en' ? 'No services found.' : 'कोई सेवा नहीं मिली।'}
                 </p>
               )}
@@ -214,21 +256,36 @@ export default function Services() {
         </section>
 
         {/* Testimonials Section */}
-        <section className="relative py-16 sm:py-20 bg-gradient-to-b from-[#f1f1f1] to-[#f9f9f9]">
-          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+        <section className="relative py-16 sm:py-20 bg-gradient-to-b from-[#FFD1DC] to-[#F7CAC9]">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto text-center mb-12 sm:mb-16">
-              <div className="inline-flex items-center bg-[#F0DF20]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm mb-4 sm:mb-6">
-                <Star className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3 fill-current" />
-                <span className="text-[#F0DF20] font-semibold text-base sm:text-lg">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="inline-flex items-center bg-[#FFD700]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#FFD700]/30 shadow-sm mb-6 sm:mb-8"
+              >
+                <Star className="w-5 sm:w-6 h-5 sm:h-6 text-[#FFD700] mr-2 sm:mr-3 fill-current" />
+                <span className="text-[#4B2E2E] font-semibold text-base sm:text-lg">
                   {language === 'en' ? 'Celestial Experiences' : 'दिव्य अनुभव'}
                 </span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20]">
+              </motion.div>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 font-serif text-[#4B2E2E]"
+              >
                 {language === 'en' ? 'Transformations Under the Cosmos' : 'ब्रह्मांड के तहत परिवर्तन'}
-              </h2>
-              <p className="text-base sm:text-lg text-[#1a1a1a]/80 max-w-3xl mx-auto leading-relaxed">
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-base sm:text-lg text-[#800000] max-w-3xl mx-auto leading-relaxed"
+              >
                 {language === 'en' ? 'Discover how our guidance has illuminated paths for seekers worldwide' : 'जानिए कैसे हमारा मार्गदर्शन दुनिया भर के साधकों के मार्ग को प्रकाशित करता है'}
-              </p>
+              </motion.p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
@@ -237,126 +294,176 @@ export default function Services() {
                 { name: 'Sunita M.', role: language === 'en' ? 'Career Professional' : 'कैरियर प्रोफेशनल', quote: language === 'en' ? 'Vastu consultation brought harmony to my workspace.' : 'वास्तु परामर्श ने मेरे कार्यस्थल में सामंजस्य लाया।', rating: 5 },
                 { name: 'Amit P.', role: language === 'en' ? 'Entrepreneur' : 'उद्यमी', quote: language === 'en' ? 'Numerology insights guided my business decisions.' : 'अंक ज्योतिष की अंतर्दृष्टि ने मेरे व्यावसायिक निर्णयों का मार्गदर्शन किया।', rating: 4.5 }
               ].map((testimonial, index) => (
-                <div
+                <motion.div
                   key={index}
-                  className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-[#F0DF20]/20 hover:border-[#F0DF20]/40 shadow-md hover:shadow-lg transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                  className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-[#FFD700]/30 hover:border-[#FFD700]/50 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <div className="flex items-center mb-4 sm:mb-6">
                     {Array.from({ length: Math.floor(testimonial.rating) }).map((_, i) => (
-                      <Star key={i} className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20] fill-current" />
+                      <Star key={i} className="w-5 h-5 text-[#FFD700] fill-current" />
                     ))}
-                    {testimonial.rating % 1 !== 0 && <Star className="w-4 sm:w-5 h-4 sm:h-5 text-[#F0DF20] fill-current opacity-50" />}
+                    {testimonial.rating % 1 !== 0 && <Star className="w-5 h-5 text-[#FFD700] fill-current opacity-50" />}
                   </div>
-                  <p className="text-sm sm:text-base text-[#1a1a1a]/80 mb-4 sm:mb-6 italic font-serif">"{testimonial.quote}"</p>
+                  <p className="text-base text-[#800000] mb-4 sm:mb-6 italic font-serif">"{testimonial.quote}"</p>
                   <div className="flex items-center">
-                    <div className="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-gradient-to-br from-[#F0DF20] to-[#F5C742] flex items-center justify-center text-[#1a1a1a] font-semibold text-sm sm:text-base mr-3 sm:mr-4">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#E0116F] to-[#FFD700] flex items-center justify-center text-white font-semibold text-base mr-4">
                       {testimonial.name[0]}
                     </div>
                     <div>
-                      <h4 className="text-sm sm:text-base font-semibold text-[#1a1a1a]">{testimonial.name}</h4>
-                      <p className="text-xs sm:text-sm text-[#1a1a1a]/60">{testimonial.role}</p>
+                      <h4 className="text-base font-semibold text-[#4B2E2E]">{testimonial.name}</h4>
+                      <p className="text-sm text-[#800000]/60">{testimonial.role}</p>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
         </section>
 
         {/* FAQ Section */}
-        <section className="relative py-16 sm:py-20 bg-gradient-to-b from-[#f9f9f9] to-[#f9f9f9]">
-          <div className="container mx-auto px-3 sm:px-4 lg:px-6">
+        <section className="relative py-16 sm:py-20 bg-gradient-to-b from-[#F7CAC9] to-[#FFD1DC]">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
             <div className="max-w-5xl mx-auto text-center mb-12 sm:mb-16">
-              <div className="inline-flex items-center bg-[#F0DF20]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm mb-4 sm:mb-6">
-                <Sparkles className="w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] mr-2 sm:mr-3" />
-                <span className="text-[#F0DF20] font-semibold text-base sm:text-lg">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="inline-flex items-center bg-[#FFD700]/10 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#FFD700]/30 shadow-sm mb-6 sm:mb-8"
+              >
+                <Sparkles className="w-5 sm:w-6 h-5 sm:h-6 text-[#FFD700] mr-2 sm:mr-3" />
+                <span className="text-[#4B2E2E] font-semibold text-base sm:text-lg">
                   {language === 'en' ? 'Frequently Asked Questions' : 'अक्सर पूछे जाने वाले प्रश्न'}
                 </span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#1a1a1a] to-[#F0DF20]">
+              </motion.div>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 font-serif text-[#4B2E2E]"
+              >
                 {language === 'en' ? 'Your Questions, Answered' : 'आपके प्रश्न, उत्तरित'}
-              </h2>
-              <p className="text-base sm:text-lg text-[#1a1a1a]/80 max-w-3xl mx-auto leading-relaxed">
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-base sm:text-lg text-[#800000] max-w-3xl mx-auto leading-relaxed"
+              >
                 {language === 'en' ? 'Explore common queries about our services' : 'हमारी सेवाओं के बारे में सामान्य प्रश्नों का अन्वेषण करें'}
-              </p>
+              </motion.p>
             </div>
 
             <div className="space-y-4 sm:space-y-6">
               {faqs.map((faq, index) => (
-                <div
+                <motion.div
                   key={index}
-                  className="bg-white/90 backdrop-blur-sm rounded-2xl border border-[#F0DF20]/20 shadow-md hover:shadow-lg transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                  className="bg-white/95 backdrop-blur-sm rounded-2xl border border-[#FFD700]/30 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <button
                     className="w-full flex items-center justify-between p-4 sm:p-6 text-left"
                     onClick={() => setOpenFAQ(openFAQ === index ? null : index)}
                   >
-                    <span className="text-sm sm:text-base font-semibold text-[#1a1a1a]">{faq.question}</span>
-                    <ChevronDown className={`w-5 sm:w-6 h-5 sm:h-6 text-[#F0DF20] transition-transform duration-300 ${openFAQ === index ? 'rotate-180' : ''}`} />
+                    <span className="text-base font-semibold text-[#4B2E2E]">{faq.question}</span>
+                    <ChevronDown className={`w-6 h-6 text-[#FFD700] transition-transform duration-300 ${openFAQ === index ? 'rotate-180' : ''}`} />
                   </button>
                   {openFAQ === index && (
-                    <div className="px-4 sm:px-6 pb-4 sm:pb-6">
-                      <p className="text-sm sm:text-base text-[#1a1a1a]/80">{faq.answer}</p>
-                    </div>
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      transition={{ duration: 0.3 }}
+                      className="px-4 sm:px-6 pb-4 sm:pb-6"
+                    >
+                      <p className="text-base text-[#800000]">{faq.answer}</p>
+                    </motion.div>
                   )}
-                </div>
+                    </motion.div>
               ))}
             </div>
 
-            <div className="text-center mt-8 sm:mt-10">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center mt-8 sm:mt-10"
+            >
               <Link href="/faq">
                 <Button
-                  className="bg-gradient-to-r from-[#F0DF20] to-[#F5C742] hover:from-[#F5C742] hover:to-[#F0DF20] text-[#1a1a1a] font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+                  className="bg-[#E75480] hover:bg-[#FF00FF] text-white font-semibold px-6 sm:px-8 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
                 >
                   {language === 'en' ? 'View All FAQs' : 'सभी प्रश्न देखें'}
                 </Button>
               </Link>
-            </div>
+            </motion.div>
           </div>
         </section>
 
         {/* Final CTA Section */}
-        <section className="relative py-16 sm:py-20 bg-gradient-to-r from-[#F0DF20] to-[#F5C742]">
+        <section className="relative py-16 sm:py-20 bg-gradient-to-r from-[#E0116F] to-[#E75480]">
           <div className="absolute inset-0 -z-10">
             <div className="absolute inset-0 bg-[url('/assets/cosmic-pattern.svg')] opacity-10" />
           </div>
 
-          <div className="container mx-auto px-3 sm:px-4 lg:px-6 text-center">
-            <div className="inline-flex items-center bg-white/90 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#F0DF20]/20 shadow-sm mb-4 sm:mb-6">
-              <Moon className="w-5 sm:w-6 h-5 sm:h-6 text-[#1a1a1a] mr-2 sm:mr-3" />
-              <Sun className="w-5 sm:w-6 h-5 sm:h-6 text-[#1a1a1a]" />
-            </div>
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="inline-flex items-center bg-white/95 backdrop-blur-sm px-4 sm:px-6 py-2 sm:py-3 rounded-xl border border-[#FFD700]/30 shadow-sm mb-6 sm:mb-8"
+            >
+              <Moon className="w-5 sm:w-6 h-5 sm:h-6 text-[#4B2E2E] mr-2 sm:mr-3" />
+              <Sun className="w-5 sm:w-6 h-5 sm:h-6 text-[#FFD700]" />
+            </motion.div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 font-serif text-white">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8 font-serif text-white"
+            >
               {language === 'en' ? 'Ready for Cosmic Transformation?' : 'ब्रह्मांडीय परिवर्तन के लिए तैयार हैं?'}
-            </h2>
+            </motion.h2>
 
-            <p className="text-base sm:text-lg text-white/90 max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-10">
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-base sm:text-lg text-white/90 max-w-3xl mx-auto leading-relaxed mb-8 sm:mb-10"
+            >
               {language === 'en' ? 'Begin your spiritual journey today and align with the cosmic energies that guide your destiny.' : 'आज ही अपनी आध्यात्मिक यात्रा शुरू करें और उन ब्रह्मांडीय ऊर्जाओं के साथ संरेखित करें जो आपके भाग्य का मार्गदर्शन करती हैं।'}
-            </p>
+            </motion.p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
               <Button
-                className="bg-white hover:bg-gray-100 text-[#1a1a1a] font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+                className="bg-white hover:bg-[#FFD700]/20 text-[#E0116F] font-semibold px-6 sm:px-8 py-3 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
               >
-                <Zap className="w-5 sm:w-6 h-5 sm:h-6 mr-2 sm:mr-3" />
+                <Zap className="w-5 h-5 mr-2" />
                 {content.common.getConsultation}
               </Button>
 
               <Link href="/contact">
                 <Button
                   variant="outline"
-                  className="border-2 border-white text-white hover:bg-white/10 font-semibold px-6 sm:px-8 py-2 sm:py-3 rounded-xl"
+                  className="border-2 border-white text-white hover:bg-white/10 font-semibold px-6 sm:px-8 py-3 rounded-xl"
                 >
                   {content.common.contactUs}
                 </Button>
               </Link>
-            </div>
+            </motion.div>
           </div>
         </section>
       </main>
 
-      <Footer />
     </div>
   );
 }
